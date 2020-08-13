@@ -1,0 +1,54 @@
+html,body{
+    margin:0px;
+    height: 100%;
+    background-color: #fae8e8;
+
+}
+
+
+
+
+.content, .content-row{
+    height: 100%;
+    position: relative;
+    
+    
+}
+
+.header-content{
+    position: absolute;
+    z-index: 100;
+}
+
+.logo-img{
+    width: 100%;
+    margin-left: 0;
+}
+
+.logo-img{
+    border: 1px solid #D7DBDD;
+}
+.main-content{
+    padding-top: 3.5rem;
+}
+
+.result-content{
+    border: 1px solid #D7DBDD;
+}
+
+
+.footer-content{
+    position: fixed;
+    height: 4%;
+    bottom: 0;
+    background-color: black;
+}
+
+#listaRecursos{
+    overflow-x: auto;
+}
+
+.curso{
+    border-radius: 0.5rem;
+    border: 1.5px solid #dfd7d7;
+}

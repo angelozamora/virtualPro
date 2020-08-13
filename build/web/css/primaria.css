@@ -1,0 +1,19 @@
+ul,li{
+    text-decoration: none;
+    list-style: none;
+}
+
+.grado{
+    background-color: aqua;
+}
+
+
+.desactivo{
+    display: none;
+}
+
+.activo{
+    display: block;
+    background-color: blue;
+}
+
