@@ -5,6 +5,7 @@
  */
 package Factory;
 
+import Design.IActividadDAO;
 import Design.IAdministradorDAO;
 import Impl.AlumnoDAOImpl;
 import Design.IAlumnoDAO;
@@ -12,12 +13,15 @@ import Design.ICursoDAO;
 import Design.IGradoDAO;
 import Design.IProfesorDAO;
 import Design.ISeccionDAO;
+import Design.IUsuarioDAO;
+import Impl.ActividadDAOImpl;
 import Impl.AdministradorDAOImpl;
 
 import Impl.CursoDAOImpl;
 import Impl.GradoDAOImpl;
 import Impl.ProfesorDAOImpl;
 import Impl.SeccionDAOImpl;
+import Impl.UsuarioDAOImpl;
 
 /**
  *
@@ -34,6 +38,10 @@ public class FactoryDAO {
     
     public static FactoryDAO getInstance(){
         return serviceFac;
+    }
+    
+    public IUsuarioDAO getUsuario(){
+        return new UsuarioDAOImpl();
     }
     
     public IAdministradorDAO getAdministradorService(){
@@ -60,5 +68,8 @@ public class FactoryDAO {
         return new SeccionDAOImpl();
     }
     
+    public IActividadDAO getActividadService(){
+        return new ActividadDAOImpl();
+    }
     
 }

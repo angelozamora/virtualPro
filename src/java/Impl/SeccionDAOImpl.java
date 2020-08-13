@@ -21,16 +21,16 @@ import java.util.List;
  * @author Angelo
  */
 public class SeccionDAOImpl implements ISeccionDAO{
-
-    public SeccionDAOImpl() {
-    }
-  
     
     private ConexionBD con;
+    Connection cn;
     Statement st=null;
     ResultSet rs=null;
     
-    Connection cn = con.getConnection();
+    public SeccionDAOImpl() {
+        con=new ConexionBD();
+        cn = con.getConnection();
+    }
     
     
     @Override

@@ -5,6 +5,7 @@
  */
 package Design;
 
+import Modelo.Actividad;
 import Modelo.Profesor;
 import Modelo.Resultado;
 import java.util.List;
@@ -21,4 +22,7 @@ public interface IProfesorDAO {
     List<Profesor> obtenerProfesores();
     
     Resultado eliminarProfesor(int id);
+    
+    void subirActividad(int idProfesor,int idGradoSeccion,int  idCurso, Actividad actividad);
+    
 }

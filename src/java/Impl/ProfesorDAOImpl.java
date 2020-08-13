@@ -5,7 +5,10 @@
  */
 package Impl;
 
+import Design.IActividadDAO;
 import Design.IProfesorDAO;
+import Factory.FactoryDAO;
+import Modelo.Actividad;
 import Modelo.Alumno;
 import Modelo.Profesor;
 import Modelo.Resultado;
@@ -22,10 +25,18 @@ import java.util.List;
  */
 public class ProfesorDAOImpl implements IProfesorDAO{
     
-    private ConexionBD con;
-    Statement st=null;
-    ResultSet rs=null;
-    Connection cn = con.getConnection();
+     private ConexionBD con;
+     Statement st=null;
+     ResultSet rs=null;
+     Connection cn;
+     
+     IActividadDAO actividadDAO= FactoryDAO.getInstance().getActividadService();
+     
+    public ProfesorDAOImpl() {
+        con = new ConexionBD();
+        cn = con.getConnection();
+    }
+    
     
     @Override
     public void crearProfesor(Profesor profesor) {
@@ -124,6 +135,23 @@ public class ProfesorDAOImpl implements IProfesorDAO{
         return resultado;
 
         
+    }
+
+    @Override
+    public void subirActividad(int idProfesor, int idGradoSeccion, int idCurso, Actividad actividad) {
+        
+        int idActividad=0;
+        
+        try {
+            idActividad=actividadDAO.crearActividad(idProfesor, actividad);
+        
+            st=cn.createStatement();
+            st.executeUpdate("INSERT INTO actividadasignada (`idActividad`, `idGrado_Seccion`, `idCurso`) VALUES ('"+idActividad+"','"+idGradoSeccion+"','"+idCurso+"')");
+            
+        } catch (Exception e) {
+            e.getMessage();
+        }
+
     }
     
 }
