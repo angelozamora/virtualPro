@@ -72,15 +72,15 @@
                                 <form action="" class=" col-12  text-white px-4">
                                     <div class="form-group ">
                                         <label for="usuario">USUARIO</label>
-                                        <input type="text" id="usuario" class="form-input">
+                                        <input type="text" id="usuario" name="usuario" class="form-input">
                                     </div>
                                     <div class="form-group">
                                         <label for="password">PASSWORD</label>
-                                        <input type="text" id="password" class="form-input">
+                                        <input type="text" id="password" name="password" class="form-input">
                                     </div>
                                     <div class="form-group row justify-content-center mt-4">
                                         
-                                            <button class=" btn btn-success mx-auto">INGRESAR</button>
+                                            <button type="submit" class=" btn btn-success mx-auto" name="login">INGRESAR</button>
 
                                         <div class="row col-12 mt-3 text-center">
                                             <span class="col-12 col-md-6  col-lg-12 my-2">
@@ -90,7 +90,7 @@
                                                 <a href="#">¿Olvidaste tu Contraseña?</a>
                                             </span>
                                             <span class="col-12 col-lg-12 my-2">
-                                                <a href="index.html">Cancelar</a>
+                                                <a href="index.jsp">Cancelar</a>
                                             </span>
                                             
                                         </div>

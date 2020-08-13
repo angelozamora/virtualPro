@@ -119,15 +119,15 @@ public final class signin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                <form action=\"\" class=\" col-12  text-white px-4\">\n");
       out.write("                                    <div class=\"form-group \">\n");
       out.write("                                        <label for=\"usuario\">USUARIO</label>\n");
-      out.write("                                        <input type=\"text\" id=\"usuario\" class=\"form-input\">\n");
+      out.write("                                        <input type=\"text\" id=\"usuario\" name=\"usuario\" class=\"form-input\">\n");
       out.write("                                    </div>\n");
       out.write("                                    <div class=\"form-group\">\n");
       out.write("                                        <label for=\"password\">PASSWORD</label>\n");
-      out.write("                                        <input type=\"text\" id=\"password\" class=\"form-input\">\n");
+      out.write("                                        <input type=\"text\" id=\"password\" name=\"password\" class=\"form-input\">\n");
       out.write("                                    </div>\n");
       out.write("                                    <div class=\"form-group row justify-content-center mt-4\">\n");
       out.write("                                        \n");
-      out.write("                                            <button class=\" btn btn-success mx-auto\">INGRESAR</button>\n");
+      out.write("                                            <button type=\"submit\" class=\" btn btn-success mx-auto\" name=\"login\">INGRESAR</button>\n");
       out.write("\n");
       out.write("                                        <div class=\"row col-12 mt-3 text-center\">\n");
       out.write("                                            <span class=\"col-12 col-md-6  col-lg-12 my-2\">\n");
@@ -137,7 +137,7 @@ public final class signin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                <a href=\"#\">¿Olvidaste tu Contraseña?</a>\n");
       out.write("                                            </span>\n");
       out.write("                                            <span class=\"col-12 col-lg-12 my-2\">\n");
-      out.write("                                                <a href=\"index.html\">Cancelar</a>\n");
+      out.write("                                                <a href=\"index.jsp\">Cancelar</a>\n");
       out.write("                                            </span>\n");
       out.write("                                            \n");
       out.write("                                        </div>\n");

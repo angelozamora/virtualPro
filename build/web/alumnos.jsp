@@ -4,6 +4,10 @@
     Author     : Angelo
 --%>
 
+<%@page import="Modelo.Alumno"%>
+<%@page import="java.util.List"%>
+<%@page import="Design.IAlumnoDAO"%>
+<%@page import="Factory.FactoryDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -65,6 +69,13 @@
                                   </tr>
                                 </thead>
                                 <tbody>
+                                    
+                                    <%
+                                     
+                                        IAlumnoDAO alumnoDAO = FactoryDAO.getInstance().getAlumnoService();
+                                        List<Alumno> alumnoList=alumnoDAO.obtenerAlumnos();
+                                    
+                                    %>
                                   <tr>
                                     <th scope="row">1</th>
                                     <td>Angelo</td>

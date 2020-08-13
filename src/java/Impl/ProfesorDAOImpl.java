@@ -9,7 +9,6 @@ import Design.IActividadDAO;
 import Design.IProfesorDAO;
 import Factory.FactoryDAO;
 import Modelo.Actividad;
-import Modelo.Alumno;
 import Modelo.Profesor;
 import Modelo.Resultado;
 import Utils.ConexionBD;

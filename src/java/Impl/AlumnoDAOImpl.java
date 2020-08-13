@@ -30,7 +30,14 @@ public class AlumnoDAOImpl implements IAlumnoDAO {
     private ConexionBD con;
     Statement st=null;
     ResultSet rs=null;
-    Connection cn = con.getConnection();
+    Connection cn ;
+
+    public AlumnoDAOImpl() {
+        con=new ConexionBD();
+        cn=con.getConnection();
+    }
+    
+ 
     
     @Override
     public List<Alumno> obtenerAlumnos() {
