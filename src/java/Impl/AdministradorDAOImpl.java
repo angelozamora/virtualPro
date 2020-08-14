@@ -26,10 +26,15 @@ import java.util.List;
  */
 public class AdministradorDAOImpl implements IAdministradorDAO{
     
-    private ConexionBD con;
     Statement st=null;
     ResultSet rs=null;
-    Connection cn = con.getConnection();
+    Connection cn ;
+
+    public AdministradorDAOImpl() {
+        cn=ConexionBD.getInstance().getConnection();
+    }
+    
+    
     
     ISeccionDAO seccionDAO= FactoryDAO.getInstance().getSeccionService();
     

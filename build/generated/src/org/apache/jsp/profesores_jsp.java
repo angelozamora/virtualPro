@@ -3,12 +3,14 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import Modelo.Profesor;
+import Design.IProfesorDAO;
 import Modelo.Alumno;
 import java.util.List;
 import Design.IAlumnoDAO;
 import Factory.FactoryDAO;
 
-public final class alumnos_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class profesores_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -52,6 +54,8 @@ public final class alumnos_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -65,7 +69,7 @@ public final class alumnos_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <link rel=\"stylesheet\" href=\"css/header.css\">\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/estandar.css\">\n");
       out.write("    \n");
-      out.write("        <title>Alumnos</title>\n");
+      out.write("        <title>Profesores</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        ");
@@ -87,7 +91,7 @@ public final class alumnos_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <div class=\"col-12  py-4 px-5 result-content bg-white\">\n");
       out.write("                            <div class=\"row justify-content-between px-2\">\n");
       out.write("                                <div class=\" col-8\">\n");
-      out.write("                                    <h5 class=\"mt-3\">ALUMNOS :</h5>\n");
+      out.write("                                    <h4 class=\"mt-3\">PROFESORES :</h4>\n");
       out.write("                                </div>\n");
       out.write("                                <div class=\" col-1\">\n");
       out.write("                                    <button class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#modal-default\">NUEVO</button>\n");
@@ -118,28 +122,28 @@ public final class alumnos_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                ");
 
                                      
-                                    IAlumnoDAO alumnoDAO = FactoryDAO.getInstance().getAlumnoService();
-                                    List<Alumno> alumnoList=alumnoDAO.obtenerAlumnos();
+                                    IProfesorDAO profesorDAO = FactoryDAO.getInstance().getProfesorService();
+                                    List<Profesor> profesorList=profesorDAO.obtenerProfesores();
                                         
-                                     for(int i=0;i<alumnoList.size();i++){
+                                     for(int i=0;i<profesorList.size();i++){
                                          
-                                           Alumno alu=alumnoList.get(i);
+                                           Profesor prof=profesorList.get(i);
                                             
                                 
       out.write("        \n");
       out.write("                                        <tr>\n");
       out.write("                                            <th scope=\"row\">1</th>\n");
       out.write("                                            <td>");
-      out.print( alu.getNombre() );
+      out.print( prof.getNombre() );
       out.write("</td>\n");
       out.write("                                            <td>");
-      out.print( alu.getDni() );
+      out.print( prof.getDni() );
       out.write("</td>\n");
       out.write("                                            <td>");
-      out.print( alu.getEmail() );
+      out.print( prof.getEmail() );
       out.write("</td>\n");
       out.write("                                            <td>");
-      out.print( alu.getTelefono() );
+      out.print( prof.getTelefono() );
       out.write("</td>\n");
       out.write("                                            <td>\n");
       out.write("                                                <button class=\"btn btn-primary\">Ver</button>\n");
@@ -184,7 +188,7 @@ public final class alumnos_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <div class=\"modal-dialog \">\n");
       out.write("                            <div class=\"modal-content \">\n");
       out.write("                                    <div class=\"modal-header \">\n");
-      out.write("                                            <h5 class=\"modal-title\">Nuevo Alumno</h5>\n");
+      out.write("                                            <h5 class=\"modal-title\">Nuevo Profesor</h5>\n");
       out.write("                                            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n");
       out.write("                                                <span aria-hidden=\"true\">&times;</span>\n");
       out.write("                                            </button>\n");
@@ -201,7 +205,7 @@ public final class alumnos_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                            </div>\n");
       out.write("\n");
       out.write("                                            <div class=\"form-group row justify-content-around\">\n");
-      out.write("                                                <label for=\"Password\" class=\"col-sm-3 control-label\">Password</label>\n");
+      out.write("                                                <label for=\"password\" class=\"col-sm-3 control-label\">Password</label>\n");
       out.write("                                                <div class=\"col-sm-8\">\n");
       out.write("                                                    <input type=\"text\" class=\"form-control\" id=\"password\" placeholder=\"INGRESAR EL PASSWORD\" required>\n");
       out.write("                                                </div>\n");

@@ -22,14 +22,13 @@ import java.util.List;
  */
 public class SeccionDAOImpl implements ISeccionDAO{
     
-    private ConexionBD con;
-    Connection cn;
     Statement st=null;
     ResultSet rs=null;
+    Connection cn ;
+
     
     public SeccionDAOImpl() {
-        con=new ConexionBD();
-        cn = con.getConnection();
+        cn=ConexionBD.getInstance().getConnection();
     }
     
     

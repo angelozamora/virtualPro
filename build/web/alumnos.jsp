@@ -4,6 +4,7 @@
     Author     : Angelo
 --%>
 
+<%@page import="Modelo.Usuario"%>
 <%@page import="Modelo.Alumno"%>
 <%@page import="java.util.List"%>
 <%@page import="Design.IAlumnoDAO"%>
@@ -70,38 +71,40 @@
                                 </thead>
                                 <tbody>
                                     
-                                    <%
+                                <%
                                      
-                                        IAlumnoDAO alumnoDAO = FactoryDAO.getInstance().getAlumnoService();
-                                        List<Alumno> alumnoList=alumnoDAO.obtenerAlumnos();
+                                    IAlumnoDAO alumnoDAO = FactoryDAO.getInstance().getAlumnoService();
+                                    List<Alumno> alumnoList=alumnoDAO.obtenerAlumnos();
+                                        
+                                     for(int i=0;i<alumnoList.size();i++){
+                                         
+                                           Alumno alu=alumnoList.get(i);
+                                            
+                                %>        
+                                        <tr>
+                                            <th scope="row"><%= alu.getId()%></th>
+                                            <td><%= alu.getNombre() %></td>
+                                            <td><%= alu.getDni() %></td>
+                                            <td><%= alu.getEmail() %></td>
+                                            <td><%= alu.getTelefono() %></td>
+                                            <td>
+                                                <button class="btn btn-primary">Ver</button>
+                                                <button class="btn btn-warning">Modificar</button>
+                                                <button class="btn btn-danger">Eliminar</button>
+                                            </td>
+
+
+                                          </tr>
+                                            
+                                            
+                                    <%        
+                                            
+                                        
+                                        }
                                     
                                     %>
-                                  <tr>
-                                    <th scope="row">1</th>
-                                    <td>Angelo</td>
-                                    <td>71718989</td>
-                                    <td>angelo@gmail.com</td>
-                                    <td>99999999</td>
-                                    <td>
-                                        <button class="btn btn-primary">Ver</button>
-                                        <button class="btn btn-warning">Modificar</button>
-                                        <button class="btn btn-danger">Eliminar</button>
-                                    </td>
+                                  
 
-
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">2</th>
-                                    <td>Alexis</td>
-                                    <td>75758181</td>
-                                    <td>alexis@gmail.com</td>
-                                    <td>99999999</td>
-                                    <td>
-                                        <button class="btn btn-primary">Ver</button>
-                                        <button class="btn btn-warning">Modificar</button>
-                                        <button class="btn btn-danger">Eliminar</button>
-                                    </td>
-                                  </tr>
                                 </tbody>
                               </table>
 
@@ -131,48 +134,48 @@
                                             </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="form-horizontal px-3" id="frm-clases">
+                                        <form action="alumnos.jsp" class="form-horizontal px-3" id="frm-clases">
                                             <input type="text" class="form-control" id="id" style="display:none;">
 
                                             <div class="form-group row justify-content-around">
                                                 <label for="usuario" class="col-sm-3 control-label">Usuario</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="usuario" placeholder="INGRESAR EL USUARIO" required>
+                                                    <input type="text" class="form-control" name="usuario" id="usuario" placeholder="INGRESAR EL USUARIO" required>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row justify-content-around">
                                                 <label for="Password" class="col-sm-3 control-label">Password</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="password" placeholder="INGRESAR EL PASSWORD" required>
+                                                    <input type="text" class="form-control" name="password" id="password" placeholder="INGRESAR EL PASSWORD" required>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row justify-content-around">
                                                 <label for="nombre" class="col-sm-3 control-label">Nombre</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" style="text-transform:uppercase;"class="form-control" id="nombre" placeholder="INGRESAR EL NOMBRE" required>
+                                                    <input type="text" style="text-transform:uppercase;" class="form-control" name="nombre" id="nombre" placeholder="INGRESAR EL NOMBRE" required>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row justify-content-around">
                                                 <label for="dni" class="col-sm-3 control-label">DNI</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" style="text-transform:uppercase;"class="form-control" id="dni" placeholder="INGRESAR EL DNI" required>
+                                                    <input type="text" style="text-transform:uppercase;" class="form-control" name="dni" id="dni" placeholder="INGRESAR EL DNI" required>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row justify-content-around">
                                                 <label for="correo" class="col-sm-3 control-label">Correo</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" style="text-transform:uppercase;"class="form-control" id="correo" placeholder="INGRESAR EL CORREO" required>
+                                                    <input type="text" style="text-transform:uppercase;" class="form-control" name="correo" id="correo" placeholder="INGRESAR EL CORREO" required>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row justify-content-around">
                                                 <label for="telefono" class="col-sm-3 control-label">Telefono</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" style="text-transform:uppercase;"class="form-control" id="telefono" placeholder="INGRESAR EL TELEFONO" required>
+                                                    <input type="text" style="text-transform:uppercase;"class="form-control" name="telefono" id="telefono" placeholder="INGRESAR EL TELEFONO" required>
                                                 </div>
                                             </div>
 
@@ -180,7 +183,7 @@
                                             <div class="modal-footer row justify-content-between">
                                                 <button type="button" class="btn btn-warning " id="btn-cancelar" data-dismiss="modal">Cerrar</button>
 
-                                                <button type="submit" class="btn btn-success" id="btn-guardar" >Guardar</button>
+                                                <button type="submit" name="asd" class="btn btn-success" id="btn-guardar" >Guardar</button>
                                             </div>
                                         </form>
 
@@ -200,7 +203,34 @@
             </div>
         </div>
         
-        
+        <%
+            if(request.getParameter("asd")!=null){
+
+                     Alumno alumno=new Alumno();
+                    alumno.setNombre(request.getParameter("nombre"));
+                    alumno.setEmail(request.getParameter("correo"));
+                    alumno.setTelefono(request.getParameter("telefono"));
+                    alumno.setDni(request.getParameter("dni"));
+
+                    Usuario usuario=new Usuario();
+                    usuario.setUser(request.getParameter("usuario"));
+                    usuario.setPassword(request.getParameter("password"));
+                    usuario.setRol("alumn");
+
+                    alumno.setUsuario(usuario);
+
+                    System.out.println("pasara a crearse el alumno");
+
+                    alumnoDAO.crearAlumno(alumno);
+
+                    response.sendRedirect("alumnos.jsp");
+                
+                
+                
+            }  
+            
+            
+        %>
         
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

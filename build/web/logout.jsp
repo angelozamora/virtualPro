@@ -4,6 +4,7 @@
     Author     : Angelo
 --%>
 
+<%@page import="Utils.ConexionBD"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,8 +16,10 @@
         <%
             HttpSession sesion=request.getSession();
             sesion.invalidate();
-            response.sendRedirect("index.jsp");
+            ConexionBD.getInstance().setRol("root");
         
         %>
+        
+        <script src="js/logout.js"></script>
     </body>
 </html>

@@ -20,14 +20,12 @@ import java.util.List;
  */
 public class ActividadDAOImpl implements IActividadDAO{
     
-     private ConexionBD con;
-    Connection cn;
     Statement st=null;
     ResultSet rs=null;
+    Connection cn ;
     
     public ActividadDAOImpl() {
-        con=new ConexionBD();
-        cn = con.getConnection();
+        cn=ConexionBD.getInstance().getConnection();
     }
     
     

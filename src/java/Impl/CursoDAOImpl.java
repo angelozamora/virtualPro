@@ -22,10 +22,15 @@ import java.util.List;
 public class CursoDAOImpl implements ICursoDAO{
     
     
-    private ConexionBD con;
     Statement st=null;
     ResultSet rs=null;
-    Connection cn = con.getConnection();
+    Connection cn ;
+
+    public CursoDAOImpl() {
+        cn=ConexionBD.getInstance().getConnection();
+    }
+    
+    
     
     @Override
     public void crearCurso(Curso curso) {

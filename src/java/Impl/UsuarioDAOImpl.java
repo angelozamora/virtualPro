@@ -21,23 +21,35 @@ import java.util.List;
  */
 public class UsuarioDAOImpl implements IUsuarioDAO{
     
-    private ConexionBD con;
     Statement st=null;
     ResultSet rs=null;
-    Connection cn = con.getConnection();
+    Connection cn ;
+
+    public UsuarioDAOImpl() {
+        cn=ConexionBD.getInstance().getConnection();
+    }
     
+
     @Override
     public Usuario crearUsuario(Usuario usuario) {
+        System.out.println("inicia la creacion del  usuario");
         try{
-            
+            int idUsuario=0;
+                    
             st=cn.createStatement();
-            st.executeUpdate("SELECT * FROM usuario");
+            rs=st.executeQuery("CALL SP_crearUsuario('"+usuario.getUser()+"','"+usuario.getPassword()+"','"+usuario.getRol()+"')");
+            while(rs.next()){
+                idUsuario=rs.getInt("id_usuario");
+            }
             
+            System.out.println("IdUsuario : "+idUsuario);
+            usuario.setId(idUsuario);
+        
         }
         catch(Exception e){
                e.getMessage();
         }
-        
+        System.out.println("Fin de la creacion del  usuario");
         return usuario;
     }
 

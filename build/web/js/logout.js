@@ -7,6 +7,6 @@ function eventListener(){
 }
 
 function iniciarApp(){
-    localStorage.removeItem('usuarioPZ');
-    location.href="index.html";
+    localStorage.removeItem('usuarioVP');
+    location.href="index.jsp";
 }

@@ -81,9 +81,7 @@ public final class signin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <body>\n");
       out.write("        ");
 
-            
-            ConexionBD conBD=new ConexionBD();
-            Connection con=conBD.getConnection();
+            Connection con;
             Statement st=null;
             ResultSet rs=null;
             
@@ -116,7 +114,7 @@ public final class signin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    \n");
       out.write("                                </div>\n");
       out.write("                                \n");
-      out.write("                                <form action=\"\" class=\" col-12  text-white px-4\">\n");
+      out.write("                                <form action=\"#\" id=\"\" class=\" col-12  text-white px-4\">\n");
       out.write("                                    <div class=\"form-group \">\n");
       out.write("                                        <label for=\"usuario\">USUARIO</label>\n");
       out.write("                                        <input type=\"text\" id=\"usuario\" name=\"usuario\" class=\"form-input\">\n");
@@ -170,7 +168,9 @@ public final class signin_jsp extends org.apache.jasper.runtime.HttpJspBase
             
             if(request.getParameter("login")!=null){
                 
-                System.out.println("Empezo a logearse");
+                ConexionBD.getInstance().setRol("root");
+                con=ConexionBD.getInstance().getConnection();
+
                 
                 String user=request.getParameter("usuario");
                 String password = request.getParameter("password");
@@ -181,34 +181,53 @@ public final class signin_jsp extends org.apache.jasper.runtime.HttpJspBase
                     rs=st.executeQuery("CALL SP_validarusuario('"+user+"','"+password+"');");
                     while(rs.next()){     
                         rol=rs.getString("rol");
-                        System.out.println("se logeo el rol "+rol);
 
                         //RequestDispatcher view = request.getRequestDispatcher("index.jsp");  
                         //view.forward(request, response);
                     }
                     
-                    System.out.println("El rol  es : "+rol);
                     
                     if(rol!=null){
                         System.out.println("El rol para validar es : "+rol);
                         if(rol.equals("user") || rol.equals("alumn")){
                             
-                            System.out.println("Empezando validadcion");
-                            
                             rs=st.executeQuery("CALL SP_validarAlumno('"+user+"','"+password+"');");
                             
                             while(rs.next()){ 
                                 
-                                System.out.println("se logeo");
+                                System.out.println("se logeo User");
                                 session.setAttribute("logueado", "1");
                                 session.setAttribute("user", rs.getString("user")); 
                                 session.setAttribute("rol", rs.getString("rol"));
                                 session.setAttribute("id", rs.getInt("idAlumno"));
-
-                                response.sendRedirect("index.jsp");
+                                
                             }
                             
                         }
+                        else{
+                            if(rol.equals("admin")){
+                            
+                                rs=st.executeQuery("CALL SP_validarAdministrador('"+user+"','"+password+"');");
+
+                                while(rs.next()){ 
+
+                                    System.out.println("se logeo Admin");
+                                    session.setAttribute("logueado", "1");
+                                    session.setAttribute("user", rs.getString("user")); 
+                                    session.setAttribute("rol", rs.getString("rol"));
+                                    session.setAttribute("id", rs.getInt("idAdministrador"));
+
+
+                                }
+                            }
+                        }
+                        
+                            String url="login.jsp?user="+session.getAttribute("user")+"&&rol="+session.getAttribute("rol");
+                            ConexionBD.getInstance().setRol(""+session.getAttribute("rol"));
+                       
+                            response.sendRedirect(url);
+                        
+                        
                     }
                     
                     out.print("<div class='alert alert-danger' role='alert'>usuario no valido</div>");
@@ -233,7 +252,6 @@ public final class signin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script src=\"https://code.jquery.com/jquery-3.5.1.slim.min.js\" integrity=\"sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj\" crossorigin=\"anonymous\"></script>\n");
       out.write("        <script src=\"https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js\" integrity=\"sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo\" crossorigin=\"anonymous\"></script>\n");
       out.write("        <script src=\"js/bootstrap/bootstrap.min.js\"></script>\n");
-      out.write("        <script src=\"js/signin.js\" ></script>\n");
       out.write("\n");
       out.write("    </body>\n");
       out.write("</html>\n");

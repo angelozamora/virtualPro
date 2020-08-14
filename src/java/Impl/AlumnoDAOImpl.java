@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import Design.IAlumnoDAO;
 import Design.IPersona;
+import Design.IUsuarioDAO;
+import Factory.FactoryDAO;
 import Factory.FactoryPersona;
 import Modelo.Persona;
 import Modelo.Resultado;
@@ -27,16 +29,16 @@ import Modelo.Resultado;
 
 public class AlumnoDAOImpl implements IAlumnoDAO {
     
-    private ConexionBD con;
     Statement st=null;
     ResultSet rs=null;
     Connection cn ;
 
     public AlumnoDAOImpl() {
-        con=new ConexionBD();
-        cn=con.getConnection();
+        cn=ConexionBD.getInstance().getConnection();
+
     }
     
+    IUsuarioDAO usuarioDao=FactoryDAO.getInstance().getUsuarioService();
  
     
     @Override
@@ -74,9 +76,13 @@ public class AlumnoDAOImpl implements IAlumnoDAO {
     public void crearAlumno(Alumno alumno) {
         
         try{
+            System.out.println("se crear el alumno");
+            System.out.println("se crear el usuario");
+            alumno.setUsuario(usuarioDao.crearUsuario(alumno.getUsuario()));
             
             st=cn.createStatement();
-            st.executeUpdate("SELECT * FROM alumno");
+            st.executeUpdate("INSERT INTO alumno (`nombre`, `email`, `telefono`, `dni`, `codigo`, `estado`, `idUsuario`) "
+                    + "VALUES ('"+alumno.getNombre()+"','"+alumno.getEmail()+"','"+alumno.getTelefono()+"','"+alumno.getDni()+"','00000000','inactivo','"+alumno.getUsuario().getId()+"')");
             
         }
         catch(Exception e){
@@ -117,7 +123,6 @@ public class AlumnoDAOImpl implements IAlumnoDAO {
     @Override
     public Resultado eliminarAlumnno(int id) {
         Resultado resultado=new Resultado();
-        Connection cn = con.getConnection();
         
         try{
             

@@ -15,8 +15,22 @@ import java.sql.SQLException;
  */
 public class ConexionBD {
     
-    Connection  cn = null;
+    private String rol;
+    private static ConexionBD conBD;
     
+    static{
+        conBD = new ConexionBD();
+    }
+    
+    
+    public static ConexionBD getInstance(){
+        return conBD;
+    }
+    
+    
+   
+    
+    /*
      public Connection getConnection(){
         try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -28,18 +42,42 @@ public class ConexionBD {
         }
         return cn; 
     }
+    */
     
-    public Connection getConnection(String rol){
+    public ConexionBD(){
+        
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+    
+    
+
+    public Connection getConnection(){
+         Connection  cn = null;
         
         String url = "jdbc:mysql://localhost:3306/virtualPro?useSSL=false";
-        String user = rol;
-        String pass = rol;
+        String user;
+        String pass;
+        
+        if(rol.equals("root")){
+            user = "root";
+            pass = "root";
+        }else{
+            user = rol;
+            pass = rol;
+        }
+        
         
         try{
             Class.forName("com.mysql.jdbc.Driver");
             cn = DriverManager.getConnection(url,user,pass);
-            
-            
+
             if(cn!=null){
                 System.out.println("Connexion establecida");
             }else{
@@ -51,7 +89,5 @@ public class ConexionBD {
     }
      
      
-    public ConexionBD(){
-        
-    }
+    
 }

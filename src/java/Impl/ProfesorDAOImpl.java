@@ -24,18 +24,15 @@ import java.util.List;
  */
 public class ProfesorDAOImpl implements IProfesorDAO{
     
-     private ConexionBD con;
-     Statement st=null;
-     ResultSet rs=null;
-     Connection cn;
-     
-     IActividadDAO actividadDAO= FactoryDAO.getInstance().getActividadService();
+    Statement st=null;
+    ResultSet rs=null;
+    Connection cn ;
      
     public ProfesorDAOImpl() {
-        con = new ConexionBD();
-        cn = con.getConnection();
+        cn=ConexionBD.getInstance().getConnection();
     }
     
+     IActividadDAO actividadDAO= FactoryDAO.getInstance().getActividadService();
     
     @Override
     public void crearProfesor(Profesor profesor) {
@@ -93,7 +90,7 @@ public class ProfesorDAOImpl implements IProfesorDAO{
             while(rs.next()){
                 
                 Profesor profesor=new Profesor();
-                profesor.setId(rs.getInt("idAlumno"));
+                profesor.setId(rs.getInt("idProfesor"));
                 profesor.setNombre(rs.getString("nombre"));
                 profesor.setDni(rs.getString("dni"));
                 profesor.setEmail(rs.getString("email"));

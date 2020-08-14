@@ -40,7 +40,7 @@ public class FactoryDAO {
         return serviceFac;
     }
     
-    public IUsuarioDAO getUsuario(){
+    public IUsuarioDAO getUsuarioService(){
         return new UsuarioDAOImpl();
     }
     

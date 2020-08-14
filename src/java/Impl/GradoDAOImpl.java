@@ -21,10 +21,13 @@ import java.util.List;
  */
 public class GradoDAOImpl implements IGradoDAO{
     
-    private ConexionBD con;
     Statement st=null;
     ResultSet rs=null;
-    Connection cn = con.getConnection();
+    Connection cn ;
+
+    public GradoDAOImpl() {
+        cn=ConexionBD.getInstance().getConnection();
+    }
     
     
     @Override
@@ -96,7 +99,6 @@ public class GradoDAOImpl implements IGradoDAO{
     public Resultado eliminarGrado(int id) {
         
         Resultado resultado=new Resultado();
-        Connection cn = con.getConnection();
         
         try{
             
