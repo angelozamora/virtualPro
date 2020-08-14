@@ -156,10 +156,9 @@
                             }
                             
                         }
-                        else{
-                            if(rol.equals("admin")){
+                        else if(rol.equals("admin")){
                             
-                                rs=st.executeQuery("CALL SP_validarAdministrador('"+user+"','"+password+"');");
+                            rs=st.executeQuery("CALL SP_validarAdministrador('"+user+"','"+password+"');");
 
                                 while(rs.next()){ 
 
@@ -170,9 +169,25 @@
                                     session.setAttribute("id", rs.getInt("idAdministrador"));
 
 
-                                }
                             }
                         }
+                        else if(rol.equals("prof")){
+                            
+                            rs=st.executeQuery("CALL SP_validarProfesor('"+user+"','"+password+"');");
+                            
+                            while(rs.next()){ 
+                                
+                                System.out.println("se logeo Profesor");
+                                session.setAttribute("logueado", "1");
+                                session.setAttribute("user", rs.getString("user")); 
+                                session.setAttribute("rol", rs.getString("rol"));
+                                session.setAttribute("id", rs.getInt("idProfesor"));
+                            
+                            
+                            
+                             }
+                        }
+                        
                         
                             String url="login.jsp?user="+session.getAttribute("user")+"&&rol="+session.getAttribute("rol");
                             ConexionBD.getInstance().setRol(""+session.getAttribute("rol"));

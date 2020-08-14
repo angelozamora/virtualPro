@@ -7,6 +7,7 @@ package Impl;
 
 import Design.IActividadDAO;
 import Design.IProfesorDAO;
+import Design.IUsuarioDAO;
 import Factory.FactoryDAO;
 import Modelo.Actividad;
 import Modelo.Profesor;
@@ -33,14 +34,22 @@ public class ProfesorDAOImpl implements IProfesorDAO{
     }
     
      IActividadDAO actividadDAO= FactoryDAO.getInstance().getActividadService();
+     IUsuarioDAO usuarioDao=FactoryDAO.getInstance().getUsuarioService();
     
     @Override
     public void crearProfesor(Profesor profesor) {
         
         
         try{
+            System.out.println("se inicio el usuario");
+            profesor.setUsuario(usuarioDao.crearUsuario(profesor.getUsuario()));
+            
+            System.out.println("se crea el profesor");
             st=cn.createStatement();
-            st.executeUpdate("");
+            st.executeUpdate("INSERT INTO profesor (`nombre`, `email`, `telefono`, `dni`, `codigo`, `idUsuario`) "
+                    + "VALUES ('"+profesor.getNombre()+"','"+profesor.getEmail()+"','"+profesor.getTelefono()+"','"+profesor.getDni()+"','00000000','"+profesor.getUsuario().getId()+"')");
+            
+            System.out.println("se creo exitosamente el profesor");
             
         }
         catch(Exception e){

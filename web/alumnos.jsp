@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="icon" href="img/icon.png">
+        <link rel="icon" href="img/escudosm.png">
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap/bootstrap.css" >
@@ -183,7 +183,7 @@
                                             <div class="modal-footer row justify-content-between">
                                                 <button type="button" class="btn btn-warning " id="btn-cancelar" data-dismiss="modal">Cerrar</button>
 
-                                                <button type="submit" name="asd" class="btn btn-success" id="btn-guardar" >Guardar</button>
+                                                <button type="submit" name="guardar" class="btn btn-success" id="btn-guardar" >Guardar</button>
                                             </div>
                                         </form>
 
@@ -204,7 +204,7 @@
         </div>
         
         <%
-            if(request.getParameter("asd")!=null){
+            if(request.getParameter("guardar")!=null){
 
                      Alumno alumno=new Alumno();
                     alumno.setNombre(request.getParameter("nombre"));
@@ -218,8 +218,6 @@
                     usuario.setRol("alumn");
 
                     alumno.setUsuario(usuario);
-
-                    System.out.println("pasara a crearse el alumno");
 
                     alumnoDAO.crearAlumno(alumno);
 

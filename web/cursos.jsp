@@ -4,6 +4,9 @@
     Author     : Angelo
 --%>
 
+<%@page import="Modelo.Profesor"%>
+<%@page import="Modelo.Curso"%>
+<%@page import="Design.ICursoDAO"%>
 <%@page import="Modelo.Alumno"%>
 <%@page import="java.util.List"%>
 <%@page import="Design.IAlumnoDAO"%>
@@ -13,7 +16,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="icon" href="img/icon.png">
+        <link rel="icon" href="img/escudosm.png">
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap/bootstrap.css" >
@@ -22,7 +25,7 @@
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/estandar.css">
     
-        <title>Alumnos</title>
+        <title>CURSOS</title>
     </head>
     <body>
         <%
@@ -32,7 +35,7 @@
         <div class="container-fluid content ">
             <div class="row ">
                 <header class="col-12  bg-dark row justify-content-between mx-0 header-content">
-
+                
                 </header>
 
 
@@ -42,7 +45,7 @@
                         <div class="col-12  py-4 px-5 result-content bg-white">
                             <div class="row justify-content-between px-2">
                                 <div class=" col-8">
-                                    <h5 class="mt-3">ALUMNOS :</h5>
+                                    <h5 class="mt-3">CURSOS :</h5>
                                 </div>
                                 <div class=" col-1">
                                     <button class="btn btn-success" data-toggle="modal" data-target="#modal-default">NUEVO</button>
@@ -55,60 +58,36 @@
 
                         <div class="col-12 bg-white mt-4 py-4 px-5 result-content mb-5 " id="listaRecursos">
 
-                            <table class="table table-striped">
-                                <thead  class="thead-dark">
-                                  <tr>
-                                    <th     scope="col">ID</th>
-                                    <th  scope="col">Nombre</th>
-                                    <th  scope="col">DNI</th>
-                                    <th  scope="col">Correo</th>
-                                    <th  scope="col">Telefono</th>
-                                    <th  scope="col">Accion</th>
-
-
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                    
+                            <div class="row justify-content-center " id="listaCursos">
+                                
                                 <%
-                                     
-                                    IAlumnoDAO alumnoDAO = FactoryDAO.getInstance().getAlumnoService();
-                                    List<Alumno> alumnoList=alumnoDAO.obtenerAlumnos();
-                                        
-                                     for(int i=0;i<alumnoList.size();i++){
-                                         
-                                           Alumno alu=alumnoList.get(i);
-                                            
-                                %>        
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td><%= alu.getNombre() %></td>
-                                            <td><%= alu.getDni() %></td>
-                                            <td><%= alu.getEmail() %></td>
-                                            <td><%= alu.getTelefono() %></td>
-                                            <td>
-                                                <button class="btn btn-primary">Ver</button>
-                                                <button class="btn btn-warning">Modificar</button>
-                                                <button class="btn btn-danger">Eliminar</button>
-                                            </td>
-
-
-                                          </tr>
-                                            
-                                            
-                                    <%        
-                                            
-                                        
-                                        }
                                     
-                                    %>
-                                  
+                                    ICursoDAO cursoDAO=FactoryDAO.getInstance().getCursoService();
+                                    List<Curso> cursoList=cursoDAO.obtenerCursos();
+                                    
+                                    for(int i=0;i<cursoList.size();i++){
+                                        Curso cur=cursoList.get(i);
 
-                                </tbody>
-                              </table>
+                                %>
+                                
+                                    <div class="col-11 curso py-2 my-1">
+                                        <h4><%=cur.getNombreCurso()%></h4>
+                                    </div>
+                                
+                                <%
+                                    }
+                                %>    
+
+                            </div>
+
+
+
 
 
                         </div>
+
+
+
 
 
                     </div>
@@ -117,62 +96,29 @@
                         <div class="modal-dialog ">
                             <div class="modal-content ">
                                     <div class="modal-header ">
-                                            <h5 class="modal-title">Nuevo Alumno</h5>
+                                            <h5 class="modal-title">Nuevo Curso</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="form-horizontal px-3" id="frm-clases">
+                                        <form accion="cursos.jsp" class="form-horizontal px-3" id="frm-clases">
                                             <input type="text" class="form-control" id="id" style="display:none;">
 
                                             <div class="form-group row justify-content-around">
-                                                <label for="usuario" class="col-sm-3 control-label">Usuario</label>
+                                                <label for="curso" class="col-sm-3 control-label">Curso</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="usuario" placeholder="INGRESAR EL USUARIO" required>
+                                                    <input type="text" style="text-transform:uppercase;" class="form-control" name="curso" id="curso" placeholder="INGRESAR EL CURSO" required>
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row justify-content-around">
-                                                <label for="Password" class="col-sm-3 control-label">Password</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="password" placeholder="INGRESAR EL PASSWORD" required>
-                                                </div>
-                                            </div>
 
-                                            <div class="form-group row justify-content-around">
-                                                <label for="nombre" class="col-sm-3 control-label">Nombre</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" style="text-transform:uppercase;"class="form-control" id="nombre" placeholder="INGRESAR EL NOMBRE" required>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row justify-content-around">
-                                                <label for="dni" class="col-sm-3 control-label">DNI</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" style="text-transform:uppercase;"class="form-control" id="dni" placeholder="INGRESAR EL DNI" required>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row justify-content-around">
-                                                <label for="correo" class="col-sm-3 control-label">Correo</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" style="text-transform:uppercase;"class="form-control" id="correo" placeholder="INGRESAR EL CORREO" required>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row justify-content-around">
-                                                <label for="telefono" class="col-sm-3 control-label">Telefono</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" style="text-transform:uppercase;"class="form-control" id="telefono" placeholder="INGRESAR EL TELEFONO" required>
-                                                </div>
-                                            </div>
 
 
                                             <div class="modal-footer row justify-content-between">
                                                 <button type="button" class="btn btn-warning " id="btn-cancelar" data-dismiss="modal">Cerrar</button>
 
-                                                <button type="submit" class="btn btn-success" id="btn-guardar" >Guardar</button>
+                                                <button type="submit" name="guardar" class="btn btn-success" id="btn-guardar" >Guardar</button>
                                             </div>
                                         </form>
 
@@ -192,7 +138,19 @@
             </div>
         </div>
         
-        
+        <%
+            if(request.getParameter("guardar")!=null){
+                
+                Curso curso=new Curso();
+                
+                curso.setNombreCurso(request.getParameter("curso").toUpperCase());
+                
+                cursoDAO.crearCurso(curso);
+                
+                response.sendRedirect("cursos.jsp");
+            }
+          
+        %>
         
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

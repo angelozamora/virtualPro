@@ -15,26 +15,46 @@ function iniciarApp(e){
     e.preventDefault();
 
 
-
+    var headerUsuario=``;
+    
     var headerinnerHTML=`
 
-    <div class="col-6 col-sm-5 col-md-2 pt-1 pl-4">
-    <img src="img/logoSM.png" alt="" id="logoSM">
-    </div>
+            <div class="col-6 col-sm-5 col-md-2 pt-1 pl-4">
+                <img src="img/logoSM.png" alt="" id="logoSM">
+            </div>
 
-    <nav class="col-5 col-sm-7 col-md-8  navbar navbar-expand-lg navbar-dark bg-dark ">
-        <div class="col-12 col-lg-1 row  justify-content-end mx-0">
-            <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
+            <nav class="col-5 col-sm-7 col-md-8  navbar navbar-expand-lg navbar-dark bg-dark ">
+                <div class="col-12 col-lg-1 row  justify-content-end mx-0">
+                    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse justify-content-end  " id="navbarNav">
+                    <ul class="navbar-nav  justify-content-end ">
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-white" href="index.jsp">Home</a>
+                        </li>
+
+                
+    
+        `;
+
+    let usuariosVP=obtenerLocalStorage();
+
+    console.log("LocalStorage");
+    console.log(usuariosVP);
+    
+    if(usuariosVP.length>0){
+        var rol=usuariosVP[0].rol;
+        console.log("el rol es : "+rol);
+        console.log("con usuario");
         
-        <div class="collapse navbar-collapse justify-content-end  " id="navbarNav">
-            <ul class="navbar-nav  justify-content-end ">
-                <li class="nav-item mx-2">
-                    <a class="nav-link text-white" href="index.jsp">Inicio</a>
-                </li>
-
+        if(rol==="admin"){
+            console.log("usuario ADMIN");
+            
+            headerUsuario=`
+                
                 <li class="nav-item dropdown">
                     <a  class="nav-link dropdown-toggle text-white" 
                         data-toggle="dropdown" 
@@ -58,46 +78,70 @@ function iniciarApp(e){
                 <li class="nav-item  mx-2" >
                     <a class="nav-link text-white" href="profesores.jsp">Profesores</a>
                 </li>
-    
-    `
+                
+            `;
+            
+        }else if(rol==="prof"){
+            console.log("usuario PROFESOR");
+            
+            headerUsuario=`
+                
+                <li class="nav-item mx-2">
+                    <a class="nav-link text-white" href="cursosProfesor.jsp">Mis Cursos</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link text-white" href="actividadesProfesor.jsp">Actividades</a>
+                </li>
 
-    let usuariosVP=obtenerLocalStorage();
+            `;
+            
+        }
+        else if(rol==="alumn" || rol==="user"){
+            console.log("usuario USER O ALUMN");
+            
+            headerUsuario=`
+                
+                <li class="nav-item mx-2">
+                    <a class="nav-link text-white" href="misCursos.jsp">Mis Cursos</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link text-white" href="notas.jsp">Notas</a>
+                </li>
 
-    console.log("LocalStorage");
-    console.log(usuariosVP);
-
-    if(usuariosVP.length>0){
-
-        console.log("con usuario");
-        headeruser=`
+            `;
+            
+        }
         
-        <li class="nav-item  ">     
-            <a class=" nav-link " href="#"><span class="text-white">${usuariosVP[0].user}</span></a>
-        </li>
+        
+        
+        
+        headerUsuario=headerUsuario+`
+        
+                    <li class="nav-item  ">     
+                        <a class=" nav-link " href="#"><span class="text-white">${usuariosVP[0].user}</span></a>
+                    </li>
 
-        <li class="nav-item dropdown">
-            <a  class="nav-link dropdown-toggle" 
-            data-toggle="dropdown" 
-            href="#" role="button" 
-            aria-haspopup="true" aria-expanded="false"
-            ><i class=" fas fa-user-circle user"></i></a>
-            <div class="dropdown-menu " id="dp">
-                <a class="dropdown-item" href="#">Perfil</a>
-                <a class="dropdown-item" href="listaRecursos.html">Lista Recursos</a>
-                <a class="dropdown-item" href="prestamos.html">Mis Prestamos</a>
-                <a class="dropdown-item" href="logout.jsp">Cerra Sesion</a>
+                    <li class="nav-item dropdown">
+                        <a  class="nav-link dropdown-toggle" 
+                        data-toggle="dropdown" 
+                        href="#" role="button" 
+                        aria-haspopup="true" aria-expanded="false"
+                        ><i class=" fas fa-user-circle user"></i></a>
+                        <div class="dropdown-menu " id="dp">
+                            <a class="dropdown-item" href="#">Perfil</a>
+                            <a class="dropdown-item" href="logout.jsp">Cerra Sesion</a>
+                        </div>
+                    </li>
+                </ul>
+
             </div>
-        </li>
-    </ul>
 
-    </div>
-
-    </nav>
+        </nav>
         
         `
 
 
-        headerinnerHTML=headerinnerHTML+headeruser;
+        headerinnerHTML=headerinnerHTML+headerUsuario;
 
     }
     else{
@@ -106,15 +150,15 @@ function iniciarApp(e){
 
         headerinnerHTML=headerinnerHTML+`
         
-            <li class="nav-item  ">
-                    
-                <a class="btn btn-success " href="signin.jsp">Iniciar Sesion</a>
-                </li>
+                    <li class="nav-item  ">
 
-            
-        </ul>
+                        <a class="btn btn-success " href="signin.jsp">Iniciar Sesion</a>
+                        </li>
 
-        </div>
+
+                </ul>
+
+            </div>
 
         </nav>
             
