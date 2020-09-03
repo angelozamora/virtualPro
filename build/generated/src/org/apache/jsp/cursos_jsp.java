@@ -3,9 +3,9 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import Modelo.Alumno;
+import Bean.Alumno;
 import java.util.List;
-import Design.IAlumnoDAO;
+import DAO.IAlumnoDAO;
 import Factory.FactoryDAO;
 
 public final class cursos_jsp extends org.apache.jasper.runtime.HttpJspBase

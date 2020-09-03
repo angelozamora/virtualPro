@@ -3,11 +3,11 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import Modelo.Profesor;
-import Design.IProfesorDAO;
-import Modelo.Alumno;
+import Bean.Profesor;
+import DAO.IProfesorDAO;
+import Bean.Alumno;
 import java.util.List;
-import Design.IAlumnoDAO;
+import DAO.IAlumnoDAO;
 import Factory.FactoryDAO;
 
 public final class profesores_jsp extends org.apache.jasper.runtime.HttpJspBase
