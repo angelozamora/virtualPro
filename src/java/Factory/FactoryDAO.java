@@ -5,23 +5,22 @@
  */
 package Factory;
 
-import Design.IActividadDAO;
-import Design.IAdministradorDAO;
-import Impl.AlumnoDAOImpl;
-import Design.IAlumnoDAO;
-import Design.ICursoDAO;
-import Design.IGradoDAO;
-import Design.IProfesorDAO;
-import Design.ISeccionDAO;
-import Design.IUsuarioDAO;
-import Impl.ActividadDAOImpl;
-import Impl.AdministradorDAOImpl;
-
-import Impl.CursoDAOImpl;
-import Impl.GradoDAOImpl;
-import Impl.ProfesorDAOImpl;
-import Impl.SeccionDAOImpl;
-import Impl.UsuarioDAOImpl;
+import DAO.IActividadDAO;
+import DAO.IAdministradorDAO;
+import DAOImpl.AlumnoDAOImpl;
+import DAO.IAlumnoDAO;
+import DAO.ICursoDAO;
+import DAO.IGradoDAO;
+import DAO.IProfesorDAO;
+import DAO.ISeccionDAO;
+import DAO.IUsuarioDAO;
+import DAOImpl.ActividadDAOImpl;
+import DAOImpl.AdministradorDAOImpl;
+import DAOImpl.CursoDAOImpl;
+import DAOImpl.GradoDAOImpl;
+import DAOImpl.ProfesorDAOImpl;
+import DAOImpl.SeccionDAOImpl;
+import DAOImpl.UsuarioDAOImpl;
 
 /**
  *

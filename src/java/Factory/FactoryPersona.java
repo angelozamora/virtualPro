@@ -5,11 +5,11 @@
  */
 package Factory;
 
-import Design.IPersona;
-import Modelo.Administrador;
-import Modelo.Alumno;
-import Modelo.Persona;
-import Modelo.Profesor;
+import DAO.IPersona;
+import Bean.Administrador;
+import Bean.Alumno;
+import Bean.Persona;
+import Bean.Profesor;
 
 /**
  *
