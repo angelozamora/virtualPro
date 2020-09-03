@@ -4,12 +4,12 @@
     Author     : Angelo
 --%>
 
-<%@page import="Modelo.Usuario"%>
-<%@page import="Modelo.Profesor"%>
-<%@page import="Design.IProfesorDAO"%>
-<%@page import="Modelo.Alumno"%>
+<%@page import="Bean.Usuario"%>
+<%@page import="Bean.Profesor"%>
+<%@page import="DAO.IProfesorDAO"%>
+<%@page import="Bean.Alumno"%>
 <%@page import="java.util.List"%>
-<%@page import="Design.IAlumnoDAO"%>
+<%@page import="DAO.IAlumnoDAO"%>
 <%@page import="Factory.FactoryDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
