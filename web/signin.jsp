@@ -48,7 +48,7 @@
                     <div class="col-lg-7  index fadeInOut">
                         <div class="row  index-content ">
                             <div class="col-12 text-light pl-5 py-2 index-titulo fadeInDown">
-                                <h1 class="titulo2">Pedro Zulen</h1>
+                                <h1 class="titulo2">Virtual Pro</h1>
                             </div>
 
                         </div>
