@@ -17,12 +17,12 @@ public class Encriptar {
     
     public String getMD5(String password){
         try{
-            MessageDigest md=MessageDigest.getInstance("MD5");
-            byte[] encBytes=md.digest(password.getBytes());
-            BigInteger numero=new BigInteger(1, encBytes);
-            String encString=numero.toString(16);
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] encBytes = md.digest(password.getBytes());
+            BigInteger numero = new BigInteger(1, encBytes);
+            String encString = numero.toString(16);
             while(encString.length()<32){
-                encString="0"+encString;
+                encString = "0"+encString;
             }
 
             return encString;
