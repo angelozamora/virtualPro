@@ -16,8 +16,8 @@ import java.util.List;
 import DAO.IAlumnoDAO;
 import DAO.IPersona;
 import DAO.IUsuarioDAO;
-import Factory.FactoryDAO;
-import Factory.FactoryPersona;
+import FactoryImpl.FactoryImpl;
+import FactoryImpl.FactoryPersonaImpl;
 import Bean.Persona;
 import Bean.Resultado;
 
@@ -38,7 +38,7 @@ public class AlumnoDAOImpl implements IAlumnoDAO {
 
     }
     
-    IUsuarioDAO usuarioDao=FactoryDAO.getInstance().getUsuarioService();
+    IUsuarioDAO usuarioDao=FactoryImpl.getInstance().getUsuarioService();
  
     
     @Override

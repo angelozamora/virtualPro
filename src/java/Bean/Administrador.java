@@ -18,15 +18,12 @@ import java.sql.Statement;
 public class Administrador extends Persona implements IPersona{
     private int id;
 
-    
-    ConexionBD bd;
     Connection con;
     Statement st=null;
     ResultSet rs=null;
 
     public Administrador() {
-        bd = new ConexionBD();
-        con = bd.getConnection();
+        con = ConexionBD.getInstance().getConnection();
     }
     
     

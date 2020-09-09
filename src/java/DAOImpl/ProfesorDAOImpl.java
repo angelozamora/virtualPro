@@ -8,7 +8,7 @@ package DAOImpl;
 import DAO.IActividadDAO;
 import DAO.IProfesorDAO;
 import DAO.IUsuarioDAO;
-import Factory.FactoryDAO;
+import FactoryImpl.FactoryImpl;
 import Bean.Actividad;
 import Bean.Profesor;
 import Bean.Resultado;
@@ -33,8 +33,8 @@ public class ProfesorDAOImpl implements IProfesorDAO{
         cn=ConexionBD.getInstance().getConnection();
     }
     
-     IActividadDAO actividadDAO= FactoryDAO.getInstance().getActividadService();
-     IUsuarioDAO usuarioDao=FactoryDAO.getInstance().getUsuarioService();
+     IActividadDAO actividadDAO= FactoryImpl.getInstance().getActividadService();
+     IUsuarioDAO usuarioDao=FactoryImpl.getInstance().getUsuarioService();
     
     @Override
     public void crearProfesor(Profesor profesor) {

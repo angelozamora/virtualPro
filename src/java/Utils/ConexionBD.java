@@ -16,29 +16,34 @@ import java.util.logging.Logger;
  * @author Angelo
  */
 public class ConexionBD {
+    private static final ConexionBD unicaInstancia = null;
     private static Connection con = null;
     
-    public ConexionBD(){
-        String url = "jdbc:mysql://localhost:3306/virtualPro?useSSL=false";
-        String user = "root";
-        String pass = "root";
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(url,user,pass);         
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(ConexionBD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.con = con; 
+    private static  class propiedades { 
+        private static String driver = "com.mysql.jdbc.Driver";
+        private static String url = "jdbc:mysql://localhost:3306/virtualPro?useSSL=false";
+        private static String user = "root";
+        private static String pass = "root";
+    }
+    
+     ConexionBD() { }
+    static public ConexionBD getInstance() {
+        return unicaInstancia == null ? new ConexionBD(): unicaInstancia;
     }
 
     public Connection getConnection(){
-        closeConnection();
-         return this.con;
+        try{
+            Class.forName(propiedades.driver);
+            con = DriverManager.getConnection(propiedades.url,propiedades.user,propiedades.pass);         
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(ConexionBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return con;
     }
 
     public void closeConnection() {
         try {
-            this.con.close();
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(ConexionBD.class.getName()).log(Level.SEVERE, null, ex);
         }

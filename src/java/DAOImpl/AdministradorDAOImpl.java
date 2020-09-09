@@ -7,7 +7,7 @@ package DAOImpl;
 
 import DAO.IAdministradorDAO;
 import DAO.ISeccionDAO;
-import Factory.FactoryDAO;
+import FactoryImpl.FactoryImpl;
 import Bean.Administrador;
 import Bean.Alumno;
 import Bean.Resultado;
@@ -36,7 +36,7 @@ public class AdministradorDAOImpl implements IAdministradorDAO{
     
     
     
-    ISeccionDAO seccionDAO= FactoryDAO.getInstance().getSeccionService();
+    ISeccionDAO seccionDAO= FactoryImpl.getInstance().getSeccionService();
     
     @Override
     public void crearAdministrador(Administrador administrador) {
