@@ -16,7 +16,6 @@
         <%
             HttpSession sesion=request.getSession();
             sesion.invalidate();
-            ConexionBD.getInstance().setRol("root");
         
         %>
         

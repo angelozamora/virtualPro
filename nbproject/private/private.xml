@@ -3,29 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/Servlet/ServletProfesor.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/Bean/Actividad.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/DAOImpl/ActividadDAOImpl.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/DAOImpl/SeccionDAOImpl.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/Utils/Encriptar.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/Servlet/ServletApoderado.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/FactoryImpl/FactoryImpl.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/build/generated/src/org/apache/jsp/profesores_jsp.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/Bean/Administrador.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/Factory/FactoryPersona.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/build/generated/src/org/apache/jsp/cursos_jsp.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/DAOImpl/UsuarioDAOImpl.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/Servlet/ServletUsuarios.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/DAOImpl/AdministradorDAOImpl.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/DAOImpl/ProfesorDAOImpl.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/FactoryImpl/FactoryPersonaImpl.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/Servlet/ServletAdministrador.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/Servlet/ServletAlumno.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/DAOImpl/AlumnoDAOImpl.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/Factory/AbstractLocaleFactory.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/Utils/ConexionBD.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/web/profesores.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/virtualPro/src/java/Factory/FactoryDAO.java</file>
+            <file>file:/C:/Users/Angelo/Documents/NetBeansProjectsBu/virtualPro/web/index.jsp</file>
+            <file>file:/C:/Users/Angelo/Documents/NetBeansProjectsBu/virtualPro/web/js/header.js</file>
         </group>
     </open-files>
 </project-private>

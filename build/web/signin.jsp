@@ -120,84 +120,31 @@
             
             if(request.getParameter("login")!=null){
                 
-                ConexionBD.getInstance().setRol("root");
                 con=ConexionBD.getInstance().getConnection();
 
                 
                 String user=request.getParameter("usuario");
                 String password = request.getParameter("password");
-                String rol=null;
                 //enc.getMD5(password)
                 try{
                     st=con.createStatement();
-                    rs=st.executeQuery("CALL SP_validarusuario('"+user+"','"+password+"');");
+                    rs=st.executeQuery("CALL SP_validarUsuario('"+user+"','"+password+"');");
                     while(rs.next()){     
-                        rol=rs.getString("rol");
-
-                        //RequestDispatcher view = request.getRequestDispatcher("index.jsp");  
-                        //view.forward(request, response);
-                    }
-                    
-                    
-                    if(rol!=null){
-                        System.out.println("El rol para validar es : "+rol);
-                        if(rol.equals("user") || rol.equals("alumn")){
-                            
-                            rs=st.executeQuery("CALL SP_validarAlumno('"+user+"','"+password+"');");
-                            
-                            while(rs.next()){ 
                                 
-                                System.out.println("se logeo User");
-                                session.setAttribute("logueado", "1");
-                                session.setAttribute("user", rs.getString("user")); 
-                                session.setAttribute("rol", rs.getString("rol"));
-                                session.setAttribute("id", rs.getInt("idAlumno"));
+                        System.out.println("se logeo un Usuario");
+                        session.setAttribute("logueado", "1");
+                        session.setAttribute("user", rs.getString("user")); 
+                        session.setAttribute("rol", rs.getString("rol"));
+                        session.setAttribute("id", rs.getInt("idPersona"));
                                 
-                            }
-                            
-                        }
-                        else if(rol.equals("admin")){
-                            
-                            rs=st.executeQuery("CALL SP_validarAdministrador('"+user+"','"+password+"');");
-
-                                while(rs.next()){ 
-
-                                    System.out.println("se logeo Admin");
-                                    session.setAttribute("logueado", "1");
-                                    session.setAttribute("user", rs.getString("user")); 
-                                    session.setAttribute("rol", rs.getString("rol"));
-                                    session.setAttribute("id", rs.getInt("idAdministrador"));
-
-
-                            }
-                        }
-                        else if(rol.equals("prof")){
-                            
-                            rs=st.executeQuery("CALL SP_validarProfesor('"+user+"','"+password+"');");
-                            
-                            while(rs.next()){ 
-                                
-                                System.out.println("se logeo Profesor");
-                                session.setAttribute("logueado", "1");
-                                session.setAttribute("user", rs.getString("user")); 
-                                session.setAttribute("rol", rs.getString("rol"));
-                                session.setAttribute("id", rs.getInt("idProfesor"));
-                            
-                            
-                            
-                             }
-                        }
-                        
-                        
-                            String url="login.jsp?user="+session.getAttribute("user")+"&&rol="+session.getAttribute("rol");
-                            ConexionBD.getInstance().setRol(""+session.getAttribute("rol"));
                        
-                            response.sendRedirect(url);
-                        
-                        
                     }
                     
-                    out.print("<div class='alert alert-danger' role='alert'>usuario no valido</div>");
+                    String url="login.jsp?user="+session.getAttribute("user")+"&&rol="+session.getAttribute("rol");
+                   
+                       
+                    response.sendRedirect(url);
+
                 }
                 catch(Exception e){
                        e.getMessage();

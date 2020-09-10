@@ -5,12 +5,13 @@
 --%>
 
 <%@page import="Bean.Usuario"%>
-<%@page import="Bean.Profesor"%>
 <%@page import="DAO.IProfesorDAO"%>
+<%@page import="FactoryImpl.FactoryImpl"%>
+<%@page import="Bean.Profesor"%>
 <%@page import="Bean.Alumno"%>
 <%@page import="java.util.List"%>
-<%@page import="DAO.IAlumnoDAO"%>
-<%@page import="Factory.FactoryDAO"%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -75,7 +76,7 @@
                                     
                                 <%
                                      
-                                    IProfesorDAO profesorDAO = FactoryDAO.getInstance().getProfesorService();
+                                    IProfesorDAO profesorDAO = FactoryImpl.getInstance().getProfesorService();
                                     List<Profesor> profesorList=profesorDAO.obtenerProfesores();
                                         
                                      for(int i=0;i<profesorList.size();i++){

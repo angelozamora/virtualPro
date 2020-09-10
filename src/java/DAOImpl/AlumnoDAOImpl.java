@@ -14,11 +14,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import DAO.IAlumnoDAO;
-import DAO.IPersona;
 import DAO.IUsuarioDAO;
 import FactoryImpl.FactoryImpl;
-import FactoryImpl.FactoryPersonaImpl;
-import Bean.Persona;
 import Bean.Resultado;
 
 /**

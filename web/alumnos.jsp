@@ -4,11 +4,12 @@
     Author     : Angelo
 --%>
 
-<%@page import="Modelo.Usuario"%>
-<%@page import="Modelo.Alumno"%>
+<%@page import="DAO.IAlumnoDAO"%>
+<%@page import="FactoryImpl.FactoryImpl"%>
+<%@page import="Bean.Usuario"%>
+<%@page import="Bean.Alumno"%>
 <%@page import="java.util.List"%>
-<%@page import="Design.IAlumnoDAO"%>
-<%@page import="Factory.FactoryDAO"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -73,7 +74,7 @@
                                     
                                 <%
                                      
-                                    IAlumnoDAO alumnoDAO = FactoryDAO.getInstance().getAlumnoService();
+                                    IAlumnoDAO alumnoDAO = FactoryImpl.getInstance().getAlumnoService();
                                     List<Alumno> alumnoList=alumnoDAO.obtenerAlumnos();
                                         
                                      for(int i=0;i<alumnoList.size();i++){
