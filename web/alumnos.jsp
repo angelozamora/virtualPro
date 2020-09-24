@@ -39,15 +39,16 @@
 
 
 
-                <main class="container bg-light main-content "> 
+                <main class="container  main-content "> 
                     <div class="row py-3 px-3">
-                        <div class="col-12  py-4 px-5 result-content bg-white">
+                        <div class="col-12  py-3 px-5 result-content bg-white">
                             <div class="row justify-content-between px-2">
                                 <div class=" col-8">
                                     <h5 class="mt-3">ALUMNOS :</h5>
+                                    <span>Lista de Alumnos</span>
                                 </div>
                                 <div class=" col-1">
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#modal-default">NUEVO</button>
+                                    <button class="btn btn-warning" data-toggle="modal" data-target="#modal-default">NUEVO</button>
                                 </div>
                             </div>
 
@@ -55,72 +56,59 @@
                         </div>
 
 
-                        <div class="col-12 bg-white mt-4 py-4 px-5 result-content mb-5 " id="listaRecursos">
+                        <div class="col-12 bg-white mt-2 py-4 px-5 result-content mb-5 " id="listaRecursos">
 
-                            <table class="table table-striped">
+                            <table class="table table-striped table-bordered" id="tbl-alumnos">
                                 <thead  class="thead-dark">
                                   <tr>
-                                    <th     scope="col">ID</th>
+                                    <th  scope="col">ID</th>
                                     <th  scope="col">Nombre</th>
                                     <th  scope="col">DNI</th>
                                     <th  scope="col">Correo</th>
                                     <th  scope="col">Telefono</th>
+                                    <th  scope="col">Nivel</th>
                                     <th  scope="col">Accion</th>
 
 
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    
-                                <%
-                                     
-                                    IAlumnoDAO alumnoDAO = FactoryImpl.getInstance().getAlumnoService();
-                                    List<Alumno> alumnoList=alumnoDAO.obtenerAlumnos();
-                                        
-                                     for(int i=0;i<alumnoList.size();i++){
-                                         
-                                           Alumno alu=alumnoList.get(i);
-                                            
-                                %>        
-                                        <tr>
-                                            <th scope="row"><%= alu.getId()%></th>
-                                            <td><%= alu.getNombre() %></td>
-                                            <td><%= alu.getDni() %></td>
-                                            <td><%= alu.getEmail() %></td>
-                                            <td><%= alu.getTelefono() %></td>
-                                            <td>
-                                                <button class="btn btn-primary">Ver</button>
-                                                <button class="btn btn-warning">Modificar</button>
-                                                <button class="btn btn-danger">Eliminar</button>
-                                            </td>
+
+                                     <%
+
+                                        IAlumnoDAO alumnoDAO = FactoryImpl.getInstance().getAlumnoService();
+                                        List<Alumno> alumnoList=alumnoDAO.obtenerAlumnos();
+
+                                         for(int i=0;i<alumnoList.size();i++){
+
+                                               Alumno alu=alumnoList.get(i);
+
+                                    %>  
+
+                                  <tr>
+                                    <th scope="row" class="text-center"><%=alu.getId() %></th>
+                                    <td class="text-center"><%=alu.getNombre() %></td>
+                                    <td class="text-center"><%=alu.getDni() %></td>
+                                    <td class="text-center"><%=alu.getEmail() %></td>
+                                    <td class="text-center"><%=alu.getTelefono() %></td>
+                                    <td class="text-center"><%=alu.getNivel() %></td>
+                                    <td class="text-center">
+                                        <button class="btn btn-primary"> <i class="far fa-eye"></i> </button>
+                                        <button class="btn btn-warning"> <i class="far fa-edit"></i> </button>
+                                        <button class="btn btn-danger"> <i class="far fa-trash-alt"></i> </button>
+                                    </td>
 
 
-                                          </tr>
-                                            
-                                            
-                                    <%        
-                                            
-                                        
-                                        }
-                                    
-                                    %>
-                                  
+                                  </tr>
+
+                                  <%
+                                      }
+                                  %>
 
                                 </tbody>
                               </table>
 
-
-
-
-
-
-
-
-
                         </div>
-
-
-
 
 
                     </div>
@@ -135,7 +123,7 @@
                                             </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="alumnos.jsp" class="form-horizontal px-3" id="frm-clases">
+                                        <form action="" class="form-horizontal px-3" id="frm-clases">
                                             <input type="text" class="form-control" id="id" style="display:none;">
 
                                             <div class="form-group row justify-content-around">
@@ -148,28 +136,41 @@
                                             <div class="form-group row justify-content-around">
                                                 <label for="Password" class="col-sm-3 control-label">Password</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" name="password" id="password" placeholder="INGRESAR EL PASSWORD" required>
+                                                    <input type="text" class="form-control" name="password" id="password"  placeholder="INGRESAR EL PASSWORD" required>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row justify-content-around">
                                                 <label for="nombre" class="col-sm-3 control-label">Nombre</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" style="text-transform:uppercase;" class="form-control" name="nombre" id="nombre" placeholder="INGRESAR EL NOMBRE" required>
+                                                    <input type="text" style="text-transform:uppercase;"class="form-control" name="nombre" id="nombre" placeholder="INGRESAR EL NOMBRE" required>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row justify-content-around">
                                                 <label for="dni" class="col-sm-3 control-label">DNI</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" style="text-transform:uppercase;" class="form-control" name="dni" id="dni" placeholder="INGRESAR EL DNI" required>
+                                                    <input type="text" style="text-transform:uppercase;"class="form-control" name="dni" id="dni" placeholder="INGRESAR EL DNI" required>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row justify-content-around">
+                                                <label for="nivel" class="col-sm-3 control-label">Nivel</label>
+                                                <div class="col-sm-8">
+                                                    <select name="nivel" id="nivel" class="form-control">
+                                                        <option value="" disabled selected>SELECCIONAR</option>
+                                                        <option value="INICIAL">INICIAL</option>
+                                                        <option value="PRIMARIA">PRIMARIA</option>
+                                                        <option value="SECUNDARIA">SECUANDARIA</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row justify-content-around">
                                                 <label for="correo" class="col-sm-3 control-label">Correo</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" style="text-transform:uppercase;" class="form-control" name="correo" id="correo" placeholder="INGRESAR EL CORREO" required>
+                                                    <input type="text" class="form-control" name="correo" id="correo" placeholder="INGRESAR EL CORREO" required>
                                                 </div>
                                             </div>
 
@@ -181,10 +182,12 @@
                                             </div>
 
 
+
+
                                             <div class="modal-footer row justify-content-between">
                                                 <button type="button" class="btn btn-warning " id="btn-cancelar" data-dismiss="modal">Cerrar</button>
 
-                                                <button type="submit" name="guardar" class="btn btn-success" id="btn-guardar" >Guardar</button>
+                                                <button type="submit" class="btn btn-success" id="btn-guardar" name="guardar">Guardar</button>
                                             </div>
                                         </form>
 
@@ -204,15 +207,30 @@
             </div>
         </div>
         
+                                            
+                                          
+                                            
+                                            
+          
         <%
             if(request.getParameter("guardar")!=null){
 
                      Alumno alumno=new Alumno();
-                    alumno.setNombre(request.getParameter("nombre"));
+                    alumno.setNombre(request.getParameter("nombre").toUpperCase());
                     alumno.setEmail(request.getParameter("correo"));
                     alumno.setTelefono(request.getParameter("telefono"));
                     alumno.setDni(request.getParameter("dni"));
-
+                    alumno.setNivel(request.getParameter("nivel"));
+                    
+                    /*
+                    System.out.println("Nombre :"+alumno.getNombre());
+                    System.out.println("Correo :"+alumno.getEmail());
+                    System.out.println("Telefono :"+alumno.getTelefono());
+                    System.out.println("DNI :"+alumno.getDni());
+                    System.out.println("nivel :"+alumno.getNivel());
+                    
+                    */
+                    
                     Usuario usuario=new Usuario();
                     usuario.setUser(request.getParameter("usuario"));
                     usuario.setPassword(request.getParameter("password"));
@@ -223,9 +241,7 @@
                     alumnoDAO.crearAlumno(alumno);
 
                     response.sendRedirect("alumnos.jsp");
-                
-                
-                
+       
             }  
             
             
@@ -235,5 +251,8 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="js/bootstrap/bootstrap.min.js"></script>
         <script src="js/header.js"></script>
+        <script src="js/table.js"></script>
+        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     </body>
 </html>

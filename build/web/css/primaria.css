@@ -4,9 +4,21 @@ ul,li{
 }
 
 .grado{
-    background-color: aqua;
+    cursor: pointer;
+    font-size: 1.28rem;
+    border-bottom: 1px solid #ee9002;
+   
 }
 
+.seccion{
+    font-size: 0.92rem;
+    color: #ee9002;
+    
+}
+
+.grado-icon{
+    color: #0784cc;
+}
 
 .desactivo{
     display: none;
@@ -14,6 +26,5 @@ ul,li{
 
 .activo{
     display: block;
-    background-color: blue;
 }
 

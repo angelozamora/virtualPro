@@ -46,8 +46,8 @@ public class ProfesorDAOImpl implements IProfesorDAO{
             
             System.out.println("se crea el profesor");
             st=cn.createStatement();
-            st.executeUpdate("INSERT INTO profesor (`nombre`, `email`, `telefono`, `dni`, `codigo`, `idUsuario`) "
-                    + "VALUES ('"+profesor.getNombre()+"','"+profesor.getEmail()+"','"+profesor.getTelefono()+"','"+profesor.getDni()+"','00000000','"+profesor.getUsuario().getId()+"')");
+            st.executeUpdate("INSERT INTO profesor (`nombre`, `email`, `telefono`, `dni`, `idUsuario`) "
+                    + "VALUES ('"+profesor.getNombre()+"','"+profesor.getEmail()+"','"+profesor.getTelefono()+"','"+profesor.getDni()+"','"+profesor.getUsuario().getId()+"')");
             
             System.out.println("se creo exitosamente el profesor");
             

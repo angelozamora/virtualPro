@@ -17,9 +17,15 @@ public interface IAlumnoDAO {
         
     void crearAlumno(Alumno alumno);
     
+    void cambiarEstadoAlumno(Alumno alumno);
+    
     Alumno obtenerAlumnoxId(int id);
     
     List<Alumno> obtenerAlumnos();
+    
+    List<Alumno> obtenerAlumnosxNivel(String nivel);
+    
+    List<Alumno> obtenerAlumnosxGradoxSeccion(int idGradoSeccion);
     
     Resultado eliminarAlumnno(int id);
 }

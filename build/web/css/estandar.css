@@ -1,11 +1,9 @@
 html,body{
     margin:0px;
     height: 100%;
-    background-color: #fae8e8;
+    background-color: #ffdfdf;
 
 }
-
-
 
 
 .content, .content-row{
@@ -34,6 +32,7 @@ html,body{
 
 .result-content{
     border: 1px solid #D7DBDD;
+    border-radius: 0.2rem;
 }
 
 
@@ -48,7 +47,8 @@ html,body{
     overflow-x: auto;
 }
 
-.curso{
-    border-radius: 0.5rem;
-    border: 1.5px solid #dfd7d7;
+
+.dataTables_filter{
+    position: absolute;
+    right: 1rem;
 }

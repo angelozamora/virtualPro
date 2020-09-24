@@ -129,7 +129,7 @@ public class SeccionDAOImpl implements ISeccionDAO{
         try{
             st=cn.createStatement();
             st.executeUpdate("INSERT INTO matricula (`idGrado_Seccion`, `idAlumno`) VALUES ('"+Id+"','"+alu.getId()+"')"); 
-   
+            
             
         }
         catch(Exception e){
@@ -137,6 +137,33 @@ public class SeccionDAOImpl implements ISeccionDAO{
         }
         
     
+    
+    }
+
+    @Override
+    public List<Seccion> obtenerSeccionesxGrado(int gradoId) {
+        List<Seccion> seccionList=new ArrayList<Seccion>();
+        
+        try{
+            
+            st=cn.createStatement();
+            rs=st.executeQuery("CALL SP_seccionxGrado("+gradoId+")");
+            
+            while(rs.next()){
+                
+                Seccion seccion=new Seccion();
+                seccion.setId(rs.getInt("idGrado_Seccion"));
+                seccion.setNombreSeccion(rs.getString("nombreSeccion"));
+                
+                seccionList.add(seccion);
+            }
+            
+        }
+        catch(Exception e){
+               e.getMessage();
+        }
+        
+        return seccionList;
     
     }
     

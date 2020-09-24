@@ -16,9 +16,15 @@ import java.util.List;
 public interface IGradoDAO {
     void crearGrado(Grado grado);
     
+    void agregarSeccionaGrado(int idGrado, int idSeccion);
+    
     Grado obtenerGradoxId(int id);
     
     List<Grado> obtenerGrados();
+    
+    List<Grado> obtenerGradosxNivel(String nivel);
+    
+    Grado obtenerGradoySeccion(int idGradoSeccion);
     
     Resultado eliminarGrado(int id);
 }

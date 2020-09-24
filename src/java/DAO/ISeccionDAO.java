@@ -22,6 +22,8 @@ public interface ISeccionDAO {
     
     List<Seccion> obtenerSecciones();
     
+    List<Seccion> obtenerSeccionesxGrado(int gradoId);
+    
     Resultado eliminarSeccion(int id);
     
     public void asignarAlumnos(String idGradoSeccion,Alumno alu);

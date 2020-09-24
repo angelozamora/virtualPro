@@ -16,6 +16,7 @@ public class Alumno extends Persona  {
     private int codigo;
     private String telefono;
     private String estado;
+    private String nivel;
 
     public Alumno() {
     }
@@ -51,6 +52,14 @@ public class Alumno extends Persona  {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(String nivel) {
+        this.nivel = nivel;
     }
     
     

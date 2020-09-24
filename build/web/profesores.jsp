@@ -41,15 +41,16 @@
 
 
 
-                <main class="container bg-light main-content "> 
+                <main class="container main-content "> 
                     <div class="row py-3 px-3">
-                        <div class="col-12  py-4 px-5 result-content bg-white">
+                        <div class="col-12  py-3 px-5 result-content bg-white">
                             <div class="row justify-content-between px-2">
                                 <div class=" col-8">
                                     <h4 class="mt-3">PROFESORES :</h4>
+                                    <span>Lista de Profesores</span>
                                 </div>
                                 <div class=" col-1">
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#modal-default">NUEVO</button>
+                                    <button class="btn btn-warning" data-toggle="modal" data-target="#modal-default">NUEVO</button>
                                 </div>
                             </div>
 
@@ -57,62 +58,54 @@
                         </div>
 
 
-                        <div class="col-12 bg-white mt-4 py-4 px-5 result-content mb-5 " id="listaRecursos">
+                        <div class="col-12 bg-white mt-2 py-4 px-5 result-content mb-5 " id="listaRecursos">
 
-                            <table class="table table-striped">
+                            <table class="table table-striped table-bordered" id="tbl-profesores">
                                 <thead  class="thead-dark">
                                   <tr>
-                                    <th     scope="col">ID</th>
-                                    <th  scope="col">Nombre</th>
-                                    <th  scope="col">DNI</th>
-                                    <th  scope="col">Correo</th>
-                                    <th  scope="col">Telefono</th>
-                                    <th  scope="col">Accion</th>
-
-
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">DNI</th>
+                                    <th class="text-center">Correo</th>
+                                    <th class="text-center">Telefono</th>
+                                    <th class="text-center">Accion</th>
                                   </tr>
                                 </thead>
                                 <tbody>
                                     
-                                <%
+                                    <%
                                      
-                                    IProfesorDAO profesorDAO = FactoryImpl.getInstance().getProfesorService();
-                                    List<Profesor> profesorList=profesorDAO.obtenerProfesores();
-                                        
-                                     for(int i=0;i<profesorList.size();i++){
-                                         
-                                           Profesor prof=profesorList.get(i);
-                                            
-                                %>        
-                                        <tr>
-                                            <th scope="row"><%= prof.getId() %></th>
-                                            <td><%= prof.getNombre() %></td>
-                                            <td><%= prof.getDni() %></td>
-                                            <td><%= prof.getEmail() %></td>
-                                            <td><%= prof.getTelefono() %></td>
-                                            <td>
-                                                <button class="btn btn-primary">Ver</button>
-                                                <button class="btn btn-warning">Modificar</button>
-                                                <button class="btn btn-danger">Eliminar</button>
-                                            </td>
+                                        IProfesorDAO profesorDAO = FactoryImpl.getInstance().getProfesorService();
+                                        List<Profesor> profesorList=profesorDAO.obtenerProfesores();
 
+                                         for(int i=0;i<profesorList.size();i++){
 
-                                          </tr>
-                                            
-                                            
-                                    <%        
-                                            
-                                        
-                                        }
+                                               Profesor prof=profesorList.get(i);
+
+                                    %>  
                                     
-                                    %>
+                                  <tr>
+                                    <th scope="row" class="text-center"><%=prof.getId() %></th>
+                                    <td class="text-center"><%=prof.getNombre() %></td>
+                                    <td class="text-center"><%=prof.getDni() %></td>
+                                    <td class="text-center"><%=prof.getEmail() %></td>
+                                    <td class="text-center"><%=prof.getTelefono() %></td>
+                                    <td class="text-center">
+                                        <button class="btn btn-primary"> <i class="far fa-eye"></i> </button>
+                                        <button class="btn btn-warning"> <i class="far fa-edit"></i> </button>
+                                        <button class="btn btn-danger"> <i class="far fa-trash-alt"></i> </button>
+                                    </td>
+                                  </tr>
                                   
-
+                                  <%
+                                   }
+                                  %>
                                 </tbody>
                               </table>
-
-
                         </div>
+
+
+
 
 
                     </div>
@@ -127,7 +120,7 @@
                                             </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="profesores.jsp" class="form-horizontal px-3" id="frm-clases">
+                                        <form class="form-horizontal px-3" id="frm-clases">
                                             <input type="text" class="form-control" id="id" style="display:none;">
 
                                             <div class="form-group row justify-content-around">
@@ -147,14 +140,14 @@
                                             <div class="form-group row justify-content-around">
                                                 <label for="nombre" class="col-sm-3 control-label">Nombre</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" style="text-transform:uppercase;"class="form-control" name="nombre" id="nombre" placeholder="INGRESAR EL NOMBRE" required>
+                                                    <input type="text" style="text-transform:uppercase;" class="form-control" name="nombre" id="nombre" placeholder="INGRESAR EL NOMBRE" required>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row justify-content-around">
                                                 <label for="dni" class="col-sm-3 control-label">DNI</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" style="text-transform:uppercase;"class="form-control"  name="dni" id="dni" placeholder="INGRESAR EL DNI" required>
+                                                    <input type="text" style="text-transform:uppercase;"class="form-control" name="dni" id="dni" placeholder="INGRESAR EL DNI" required>
                                                 </div>
                                             </div>
 
@@ -176,7 +169,7 @@
                                             <div class="modal-footer row justify-content-between">
                                                 <button type="button" class="btn btn-warning " id="btn-cancelar" data-dismiss="modal">Cerrar</button>
 
-                                                <button type="submit"  name="guardar" class="btn btn-success" id="btn-guardar" >Guardar</button>
+                                                <button type="submit" class="btn btn-success" id="btn-guardar" name="guardar">Guardar</button>
                                             </div>
                                         </form>
 
@@ -195,6 +188,9 @@
                 </footer>
             </div>
         </div>
+                                    
+                                    
+                                       
         
          <%
             if(request.getParameter("guardar")!=null){

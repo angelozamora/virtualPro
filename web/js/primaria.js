@@ -3,16 +3,19 @@
 eventListener();
 
 function eventListener(){
-    document.addEventListener('click', iniciarApp);
+    
 }
 
-function iniciarApp(e){
-    e.preventDefault();
 
+
+$('.grado').on("click", function(e){
+    e.preventDefault();
+    console.log(e.target)
     if(e.target.classList.contains('grado')){
 
-        var gradoLi=e.target;
-        var seccionUl=e.target.childNodes[1];
+        var grado=e.target;
+        var gradoLi=grado.parentElement;
+        var seccionUl=gradoLi.childNodes[3];
 
         if(gradoLi.classList.contains("gradoActivo")){
 
@@ -31,7 +34,15 @@ function iniciarApp(e){
         
 
     }
-    else{
-        console.log("otro");
-    }
-}
+    
+})
+
+$('.seccion-plus').on("click", function(e){
+    
+    var gradoLi=e.target;
+    
+    var id=gradoLi.getAttribute("data-id");
+
+    
+    $('#grado-Id').val(id);
+})

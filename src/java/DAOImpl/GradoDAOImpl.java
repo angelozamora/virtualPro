@@ -8,6 +8,7 @@ package DAOImpl;
 import DAO.IGradoDAO;
 import Bean.Grado;
 import Bean.Resultado;
+import Bean.Seccion;
 import Utils.ConexionBD;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -35,7 +36,8 @@ public class GradoDAOImpl implements IGradoDAO{
         
         try{
             st=cn.createStatement();
-            st.executeUpdate("INSERT INTO grado (`nombreGrado`) VALUES ('"+grado.getNombreGrado()+"');");
+            st.executeUpdate("INSERT INTO grado (`nombreGrado`, `nivel`) "
+                    + "VALUES ('"+grado.getNombreGrado()+"','"+grado.getNivel()+"')");
             
         }
         catch(Exception e){
@@ -84,6 +86,8 @@ public class GradoDAOImpl implements IGradoDAO{
                 grado.setId(rs.getInt("idGrado"));
                 grado.setNombreGrado(rs.getString("nombreGrado"));
                 grado.setNivel(rs.getString("nivel"));
+                
+                gradoList.add(grado);
             }
             
         }
@@ -117,6 +121,82 @@ public class GradoDAOImpl implements IGradoDAO{
         
         return resultado;
     
+    }
+
+    @Override
+    public List<Grado> obtenerGradosxNivel(String nivel) {
+        
+        List<Grado> gradoList=new ArrayList<Grado>();
+        String procedimientoAlmacenado="SELECT * FROM grado WHERE nivel='"+nivel+"'";
+        try{
+            
+            st=cn.createStatement();
+            rs=st.executeQuery(procedimientoAlmacenado);
+            
+            while(rs.next()){   
+                Grado grado=  new Grado();
+                grado.setId(rs.getInt("idGrado"));
+                grado.setNombreGrado(rs.getString("nombreGrado"));
+                grado.setNivel(rs.getString("nivel"));
+                
+                gradoList.add(grado);
+            }
+            
+        }
+        catch(Exception e){
+               e.getMessage();
+        }
+        
+        return gradoList;
+ 
+    }
+
+    @Override
+    public void agregarSeccionaGrado(int idGrado, int idSeccion) {
+        
+        try{
+            st=cn.createStatement();
+            st.executeUpdate("INSERT INTO grado_seccion (`idGrado`, `idSeccion`) "
+                    + "VALUES ('"+idGrado+"','"+idSeccion+"')");
+            
+        }
+        catch(Exception e){
+               e.getMessage();
+        }
+        
+        
+    }
+
+    @Override
+    public Grado obtenerGradoySeccion(int idGradoSeccion) {
+        Grado grado=  new Grado();
+        String procedimientoAlmacenado="CALL SP_obtenerGradoySeccion("+idGradoSeccion+")";
+        try{
+            
+            st=cn.createStatement();
+            rs=st.executeQuery(procedimientoAlmacenado);
+            
+            while(rs.next()){         
+                grado.setId(rs.getInt("idGrado"));
+                grado.setNombreGrado(rs.getString("nombreGrado"));
+                
+                Seccion seccion=new Seccion();
+                seccion.setId(rs.getInt("idSeccion"));
+                seccion.setNombreSeccion(rs.getString("nombreSeccion"));
+               
+                List<Seccion> seccionList=new ArrayList<Seccion>();
+                seccionList.add(seccion);
+               
+                grado.setSeccionesList(seccionList);
+  
+            }
+            
+        }
+        catch(Exception e){
+               e.getMessage();
+        }
+        
+        return grado;
     }
     
 }

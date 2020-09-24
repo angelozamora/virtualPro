@@ -56,6 +56,7 @@ public class AlumnoDAOImpl implements IAlumnoDAO {
                 alumno.setDni(rs.getString("dni"));
                 alumno.setEmail(rs.getString("email"));
                 alumno.setTelefono(rs.getString("telefono"));
+                alumno.setNivel(rs.getString("nivel"));
                 
                 alumnoList.add(alumno);
             }
@@ -73,13 +74,13 @@ public class AlumnoDAOImpl implements IAlumnoDAO {
     public void crearAlumno(Alumno alumno) {
         
         try{
-            System.out.println("se crear el alumno");
-            System.out.println("se crear el usuario");
+;
             alumno.setUsuario(usuarioDao.crearUsuario(alumno.getUsuario()));
             
             st=cn.createStatement();
-            st.executeUpdate("INSERT INTO alumno (`nombre`, `email`, `telefono`, `dni`, `codigo`, `estado`, `idUsuario`) "
-                    + "VALUES ('"+alumno.getNombre()+"','"+alumno.getEmail()+"','"+alumno.getTelefono()+"','"+alumno.getDni()+"','00000000','inactivo','"+alumno.getUsuario().getId()+"')");
+            st.executeUpdate("INSERT INTO alumno (`nombre`, `email`, `telefono`, `dni`, `estado`, `idUsuario`, `nivel`) "
+                    + "VALUES ('"+alumno.getNombre()+"','"+alumno.getEmail()+"','"+alumno.getTelefono()
+                    +"','"+alumno.getDni()+"','inactivo','"+alumno.getUsuario().getId()+"','"+alumno.getNivel()+"')");
             
         }
         catch(Exception e){
@@ -138,6 +139,81 @@ public class AlumnoDAOImpl implements IAlumnoDAO {
         
         return resultado;
         
+    }
+
+    @Override
+    public List<Alumno> obtenerAlumnosxGradoxSeccion(int idGradoSeccion) {
+        List<Alumno> alumnoList=new ArrayList<Alumno>();
+        String procedimientoAlmacenado = "CALL SP_obtenerAlumnosxGradoxSeccion("+idGradoSeccion+")";
+
+        try{
+            
+            st=cn.createStatement();
+            rs=st.executeQuery(procedimientoAlmacenado);
+            
+            while(rs.next()){
+                
+                Alumno alumno=new Alumno();
+                alumno.setId(rs.getInt("idMatricula"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setDni(rs.getString("dni"));
+                alumno.setEmail(rs.getString("email"));
+                alumno.setTelefono(rs.getString("telefono"));
+                
+                alumnoList.add(alumno);
+            }
+            
+        }
+        catch(Exception e){
+               e.getMessage();
+        }
+        
+        return alumnoList;
+    
+    }
+
+    @Override
+    public List<Alumno> obtenerAlumnosxNivel(String nivel) {
+        List<Alumno> alumnoList=new ArrayList<Alumno>();
+        String procedimientoAlmacenado = "SELECT * FROM alumno "
+                + "WHERE nivel = '"+nivel+"' AND estado='inactivo'";
+
+        try{
+            
+            st=cn.createStatement();
+            rs=st.executeQuery(procedimientoAlmacenado);
+            
+            while(rs.next()){
+                
+                Alumno alumno=new Alumno();
+                alumno.setId(rs.getInt("idAlumno"));
+                alumno.setNombre(rs.getString("nombre"));
+                
+                alumnoList.add(alumno);
+            }
+            
+        }
+        catch(Exception e){
+               e.getMessage();
+        }
+        
+        return alumnoList;
+        
+        
+        
+    }
+
+    @Override
+    public void cambiarEstadoAlumno(Alumno alumno) {
+        
+        try{
+            st=cn.createStatement();
+            st.executeUpdate("UPDATE alumno SET estado = '"+alumno.getEstado()+"' WHERE idAlumno="+alumno.getId()+"");
+            
+        }
+        catch(Exception e){
+            e.getMessage();
+        }
     }
     
 }
