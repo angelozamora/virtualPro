@@ -61,9 +61,9 @@ function iniciarApp(e){
                         aria-haspopup="true" aria-expanded="false"
                     >Maricula</a>
                     <div class="dropdown-menu" >
-                        <a class="dropdown-item" href="inicial.jsp">Inicial</a>
+                        <a class="dropdown-item" href="error.jsp">Inicial</a>
                         <a class="dropdown-item" href="primaria.jsp"> Primaria</a>
-                        <a class="dropdown-item" href="secundaria.jsp">Secundaria</a>
+                        <a class="dropdown-item" href="error.jsp">Secundaria</a>
                     </div>
                 </li>
 
@@ -84,7 +84,7 @@ function iniciarApp(e){
                     <div class="dropdown-menu" >
                         <a class="dropdown-item" href="alumnos.jsp">Alumnos</a>
                         <a class="dropdown-item" href="profesores.jsp"> Profesores</a>
-                        <a class="dropdown-item" href="administradores.jsp">Administradores</a>
+                        <a class="dropdown-item" href="error.jsp">Administradores</a>
                     </div>
                 </li>
 

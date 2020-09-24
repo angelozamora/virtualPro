@@ -134,11 +134,10 @@
                                             </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="form-horizontal px-3" id="frm-clases">
+                                        
+                                        <form action="primaria.jsp?asd=1" method="POST" class="form-horizontal px-3" id="frm-clases">
                                             
-                                            
-                                            
-                                            
+
                                             
                                             <div class="form-group row justify-content-around">
                                                 <label for="grado" class="col-sm-3 control-label">Grado</label>
@@ -166,9 +165,9 @@
                                             %>
 
                                             <div class="form-group row justify-content-around">
-                                                <label for="grado" class="col-sm-3 control-label">Curso 1</label>
+                                                <label for="curso1" class="col-sm-3 control-label">Curso 1</label>
                                                 <div class="col-sm-8">
-                                                    <select name="" id="" class="form-control">
+                                                    <select name="curso1" id="" class="form-control">
                                                         <option value="" disabled selected>SELECCIONAR</option>
                                                         <%
                                                             for(int i=0;i<cursoLisrt.size();i++){
@@ -185,9 +184,9 @@
                                             </div>
 
                                             <div class="form-group row justify-content-around">
-                                                <label for="grado" class="col-sm-3 control-label">Curso 2</label>
+                                                <label for="curso2" class="col-sm-3 control-label">Curso 2</label>
                                                 <div class="col-sm-8">
-                                                    <select name="" id="" class="form-control">
+                                                    <select name="curso2" id="" class="form-control">
                                                         <option value="" disabled selected>SELECCIONAR</option>
                                                         <%
                                                             for(int i=0;i<cursoLisrt.size();i++){
@@ -204,9 +203,9 @@
                                             </div>
 
                                             <div class="form-group row justify-content-around">
-                                                <label for="grado" class="col-sm-3 control-label">Curso 3</label>
+                                                <label for="curso3" class="col-sm-3 control-label">Curso 3</label>
                                                 <div class="col-sm-8">
-                                                    <select name="" id="" class="form-control">
+                                                    <select name="curso3" id="" class="form-control">
                                                         <option value="" disabled selected>SELECCIONAR</option>
                                                         <%
                                                             for(int i=0;i<cursoLisrt.size();i++){
@@ -223,9 +222,9 @@
                                             </div>
 
                                             <div class="form-group row justify-content-around">
-                                                <label for="grado" class="col-sm-3 control-label">Curso 4</label>
+                                                <label for="curso4" class="col-sm-3 control-label">Curso 4</label>
                                                 <div class="col-sm-8">
-                                                    <select name="" id="" class="form-control">
+                                                    <select name="curso4" id="" class="form-control">
                                                         <option value="" disabled selected>SELECCIONAR</option>
                                                         <%
                                                             for(int i=0;i<cursoLisrt.size();i++){
@@ -247,7 +246,7 @@
                                             <div class="modal-footer row justify-content-between">
                                                 <button type="button" class="btn btn-warning " id="btn-cancelar" data-dismiss="modal">Cerrar</button>
 
-                                                <button type="submit" class="btn btn-success" id="btn-guardar" >Guardar</button>
+                                                <button type="submit" class="btn btn-success" name="guardar-grado" id="btn-guardar-grado" >Guardar</button>
                                             </div>
                                         </form>
 
@@ -342,11 +341,23 @@
                 gradoDAO.agregarSeccionaGrado(idGrado, idSeccion);
                 gradoDAO.obtenerGrados();
            
-               
+                
                 
             }  
             
             
+        %>
+        
+        <%
+            if(request.getParameter("guardar-grado")!=null){
+                
+                
+                response.sendRedirect("profesores.jsp");
+           
+                
+                
+            }  
+        
         %>
         
         <!-- Optional JavaScript -->

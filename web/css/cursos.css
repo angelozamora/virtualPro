@@ -6,6 +6,12 @@
 
 .curso-icon{
     margin-right: 1rem;
-    color: #ff414d;
+    color: #1bff72;
+}
+
+.delete{
+    position: absolute;
+    right: 1rem;
+    color: rgb(248, 37, 37);
 }
 

@@ -120,7 +120,7 @@
                                             </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="form-horizontal px-3" id="frm-clases">
+                                        <form action="" class="form-horizontal px-3" id="frm-clases">
                                             <input type="text" class="form-control" id="id" style="display:none;">
 
                                             <div class="form-group row justify-content-around">
@@ -154,7 +154,7 @@
                                             <div class="form-group row justify-content-around">
                                                 <label for="correo" class="col-sm-3 control-label">Correo</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" style="text-transform:uppercase;"class="form-control" name="correo" id="correo" placeholder="INGRESAR EL CORREO" required>
+                                                    <input type="text" class="form-control" name="correo" id="correo" placeholder="INGRESAR EL CORREO" required>
                                                 </div>
                                             </div>
 
@@ -196,7 +196,7 @@
             if(request.getParameter("guardar")!=null){
 
                     Profesor profesor=new Profesor();   
-                    profesor.setNombre(request.getParameter("nombre"));
+                    profesor.setNombre(request.getParameter("nombre").toUpperCase());
                     profesor.setEmail(request.getParameter("correo"));
                     profesor.setTelefono(request.getParameter("telefono"));
                     profesor.setDni(request.getParameter("dni"));
@@ -210,10 +210,8 @@
 
                     profesorDAO.crearProfesor(profesor);
 
-                    response.sendRedirect("profesores.jsp");
-                
-                
-                
+                    response.sendRedirect("confirmacion.jsp?sol=2");
+   
             }  
             
             

@@ -67,7 +67,7 @@
 
                                 %>
                                 <div class="col-11 curso py-2 my-1">
-                                    <h4><i class="fas fa-book curso-icon"></i><%=cur.getNombreCurso() %></h4>
+                                    <h4><i class="fas fa-book curso-icon"></i><%=cur.getNombreCurso() %><i class="far fa-times-circle delete"></i></h4>
                                 </div>
 
                                 <%
@@ -89,13 +89,13 @@
                                             </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="form-horizontal px-3" id="frm-clases">
+                                        <form action="" class="form-horizontal px-3" id="frm-clases">
                                             <input type="text" class="form-control" id="id" style="display:none;">
 
                                             <div class="form-group row justify-content-around">
                                                 <label for="curso" class="col-sm-3 control-label">Curso</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="curso" placeholder="INGRESAR EL CURSO" required>
+                                                    <input type="text" class="form-control" name="curso" id="curso" placeholder="INGRESAR EL CURSO" required>
                                                 </div>
                                             </div>
 

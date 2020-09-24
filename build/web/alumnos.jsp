@@ -123,7 +123,7 @@
                                             </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="" class="form-horizontal px-3" id="frm-clases">
+                                        <form action=""  method="POST" class="form-horizontal px-3" id="frm-clases">
                                             <input type="text" class="form-control" id="id" style="display:none;">
 
                                             <div class="form-group row justify-content-around">
@@ -215,7 +215,7 @@
         <%
             if(request.getParameter("guardar")!=null){
 
-                     Alumno alumno=new Alumno();
+                    Alumno alumno=new Alumno();
                     alumno.setNombre(request.getParameter("nombre").toUpperCase());
                     alumno.setEmail(request.getParameter("correo"));
                     alumno.setTelefono(request.getParameter("telefono"));
@@ -240,7 +240,7 @@
 
                     alumnoDAO.crearAlumno(alumno);
 
-                    response.sendRedirect("alumnos.jsp");
+                    response.sendRedirect("confirmacion.jsp?sol=1");
        
             }  
             

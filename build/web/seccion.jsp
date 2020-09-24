@@ -213,7 +213,7 @@
                 alu.matriculado();
                 alumnoDAO.cambiarEstadoAlumno(alu);
                 
-                String url="seccion.jsp?idgs="+idGradoSeccion+"&nivel=PRIMARIA";
+                String url="confirmacion.jsp?idgs="+idGradoSeccion+"&nivel=PRIMARIA";
          
                 response.sendRedirect(url);
         }                                       
